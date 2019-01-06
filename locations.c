@@ -1,4 +1,5 @@
-struct Location {
+typedef struct {
+	int id;
   char name[50];
   char northDestination[50];
   char northAccess[50];
@@ -16,17 +17,20 @@ struct Location {
   char effectedDescription1[300];
   char effectedDescription2[300];
   char firstVisitText[300];
-  char icon;
+  char icon[1];
   bool visited;
   int temperature;
-};
+} Location;
 
-struct Location  rickensDoor = {
+Location locations[10];
+
+Location rickensDoor = {
+	0,
   "Ricken's Door",
   "None",
   "None",
-  "None",
-  "None",
+  "Ricken's Hovel",
+  "open",
   "None",
   "None",
   "None",
@@ -38,11 +42,12 @@ struct Location  rickensDoor = {
   "You stand in front of Ricken's door. It's east of you. His home is a dilapidated shack in a row of dilapidated shacks that line the waterfront. North of you is the docks. The crowd at the boats is impassable. The cobblestone is slippery under your boots.",
   "You stand in front of Ricken's door. It's east of you. His home is a dilapidated shack in a row of dilapidated shacks that line the waterfront. North of you is the docks. Ricken has cleared a path through to the boats. The cobblestone is slippery under your boots.",
   "",
-  "",
+  "Yo this shack is ballin' outta control.",
   "_",
   true,
   5
-}
+};
+
 /*
   {items}
   [itemName}
@@ -57,49 +62,57 @@ struct Location  rickensDoor = {
   false
   [itemEdible]
   false
-***
-    "Ricken's Hovel":{  
-        "Direction":{  
-            "North":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "East":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "South":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "West":{  
-                "Destination":"Ricken's Door",
-                "Access":"Open"
-            }
-        },
-        "Description":{  
-            "Neutral":"A small room lit by a mostly open fire with a cast iron pot hung over it. There are rum bottles scattered across the floor. The door to the west leads outside."
-        },
-        "Items":[  
-            {  
-                "Name":"Ricken",
-                "Visual Description":"Ricken is a seaman if there ever was one. He has wispy silver hair that matches his moustaches. The moustaches, like his eyes and nose, are thin.",
-                "Location Description":"Ricken is standing by the fire, drinking.",
-                "Obtainable":0,
-                "Edible":false
-            },
-            {  
-                "Name":"Rifle",
-                "Visual Description":"A long, wooden rifle. You don't know enough to say more about it.",
-                "Location Description":"",
-                "Obtainable":1,
-                "Edible":false
-            }
-        ],
-        "Icon":"_",
-        "Visited":false,
-        "Temperature":6
+*/
+
+Location rickensHovel = {
+	1,
+  "Ricken's Hovel",  
+  "None",
+  "None",
+  "None",
+  "None",
+  "None",
+  "None",
+  "Ricken's Door",
+  "Open",
+  "None",
+  "None",
+  "None",
+  "None",
+  "A small room lit by a mostly open fire with a cast iron pot hung over it. There are rum bottles scattered across the floor. The door to the west leads outside.",
+  "",
+  "",
+  "",
+  "_",
+  false,
+  6
+};
+
+void buildLocations() {
+	locations[0] = rickensDoor;
+	locations[1] = rickensHovel;
+}
+
+/*
+"Items":[  
+    {  
+        "Name":"Ricken",
+        "Visual Description":"Ricken is a seaman if there ever was one. He has wispy silver hair that matches his moustaches. The moustaches, like his eyes and nose, are thin.",
+        "Location Description":"Ricken is standing by the fire, drinking.",
+        "Obtainable":0,
+        "Edible":false
     },
+    {  
+        "Name":"Rifle",
+        "Visual Description":"A long, wooden rifle. You don't know enough to say more about it.",
+        "Location Description":"",
+        "Obtainable":1,
+        "Edible":false
+    }
+],
+*/
+  
+    /*
     "Docks":{  
         "Direction":{  
             "North":{  
@@ -468,3 +481,5 @@ struct Location  rickensDoor = {
         "Temperature":5
     }
 }
+*/
+

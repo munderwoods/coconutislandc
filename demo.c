@@ -5,132 +5,70 @@
 #include <ncurses.h> 
 #include <unistd.h> 
 #include <SDL2/SDL.h> 
+#include "locations.c"
 
-struct Location {
-  char name[50];
-  char northDestination[50];
-  char northAccess[50];
-  char eastDestination[50];
-  char eastAccess[50];
-  char southDestination[50];
-  char southAccess[50];
-  char westDestination[50];
-  char westAccess[50];
-  char hiddenDestination1[50];
-  char hiddenAccess1[50];
-  char hiddenDestination2[50];
-  char hiddenAccess2[50];
-  char neutralDescription[300];
-  char effectedDescription1[300];
-  char effectedDescription2[300];
-  char firstVisitText[300];
-  char icon;
-  bool visited;
-  int temperature;
-};
+char printBuffer[1000] = "Welcome to coconut island. Travel is limited to cardinal directions, N, S, E, W.";
+char locationBuffer[1000] = "";
+char command[20] = "INITIAL_COMMAND";
+char currentLocationName[20] = "Ricken's Door";
 
-void getLocation(struct Location *location) {
-  FILE * fpointer = fopen("locations", "r"); 
+int thunder();
+void toLower(char * str);
+int wordlen(const char * str); 
+void wrap(char * s, const int wrapline); 
+int formatText(char * text, int maxX);
+void addToPrintBuffer(char * text); 
+Location currentLocation();
 
-  char line[1000];
+void movec(char * direction); 
+void action(char * command); 
 
-  while (strcmp(line, "***")) {
+int main(int argc, char * argv[]) {
+	buildLocations();
 
-    fgets(line, 1000, fpointer);
-    line[strcspn(line, "\n")] = '\0';
+  initscr();
+  scrollok(stdscr, true);
 
-    if(strcmp(line, "[name]") == 0) {
-      fgets(line, 1000, fpointer);
-      strcpy(location->name, line);
+//  thunder();
+
+  while (strcmp(command, "quit")) {
+    clear();
+
+		strcpy(locationBuffer, currentLocation().neutralDescription);
+
+    if (strcmp(command, "INITIAL_COMMAND")) {
+      mvprintw(LINES - 2 + 1, 1, "You entered: %s\n", command);
     }
-  
-    if(strcmp(line, "[northDestination]") == 0) {
-      fgets(line, 1000, fpointer);
-      strcpy(location->northDestination, line);
-    }
-  
-    if(strcmp(line, "[northAccess]") == 0) {
-      fgets(line, 1000, fpointer);
-      strcpy(location->northAccess, line);
-    }
-  
-    if(strcmp(line, "[eastDestination]") == 0) {
-      fgets(line, 1000, fpointer);
-      strcpy(location->eastDestination, line);
-    }
-  
-    if(strcmp(line, "[eastAccess]") == 0) {
-      fgets(line, 1000, fpointer);
-      strcpy(location->eastAccess, line);
-    }
-  
-    if(strcmp(line, "[westDestination]") == 0) {
-      fgets(line, 1000, fpointer);
-      strcpy(location->westDestination, line);
-    }
-  
-    if(strcmp(line, "[westAccess]") == 0) {
-      fgets(line, 1000, fpointer);
-      strcpy(location->westAccess, line);
-    }
-  
-    if(strcmp(line, "[hiddenDestination1]") == 0) {
-      fgets(line, 1000, fpointer);
-      strcpy(location->hiddenDestination1, line);
-    }
-  
-    if(strcmp(line, "[hiddenAccess1]") == 0) {
-      fgets(line, 1000, fpointer);
-      strcpy(location->hiddenAccess1, line);
-    }
-  
-    if(strcmp(line, "[hiddenDestination2]") == 0) {
-      fgets(line, 1000, fpointer);
-      strcpy(location->hiddenDestination2, line);
-    }
-  
-    if(strcmp(line, "[hiddenAccess2]") == 0) {
-      fgets(line, 1000, fpointer);
-      strcpy(location->hiddenAccess2, line);
-    }
-  
-    if(strcmp(line, "[neutralDescription]") == 0) {
-      fgets(line, 1000, fpointer);
-      strcpy(location->neutralDescription, line);
-    }
-  
-    if(strcmp(line, "[effectedDescription1]") == 0) {
-      fgets(line, 1000, fpointer);
-      strcpy(location->effectedDescription1, line);
-    }
-  
-    if(strcmp(line, "[effectedDescription2]") == 0) {
-      fgets(line, 1000, fpointer);
-      strcpy(location->effectedDescription2, line);
-    }
-  
-    if(strcmp(line, "[firstVisitText]") == 0) {
-      fgets(line, 1000, fpointer);
-      strcpy(location->firstVisitText, line);
-    }
-  
-    if(strcmp(line, "[icon]") == 0) {
-      fgets(line, 1000, fpointer);
-      location->icon = line[0];
-    }
-  
-    if(strcmp(line, "[visited]") == 0) {
-      fgets(line, 1000, fpointer);
-      location->visited = line == "true";
-    }
-  
-    if(strcmp(line, "[temperature]") == 0) {
-      fgets(line, 1000, fpointer);
-      location->temperature = line[0] - '0';
-    }
+
+    formatText(locationBuffer, (COLS * .5) - 3);
+    formatText(printBuffer, (COLS * .5) - 3);
+
+    attron(A_BOLD);
+    mvprintw(1, 0, currentLocation().name);
+    attroff(A_BOLD);
+    mvprintw(2, 0, locationBuffer);
+    mvprintw(LINES * .5, 0, printBuffer);
+
+    mvhline(0, 0, ACS_CKBOARD, COLS);
+    mvvline(0, COLS * .5, ACS_CKBOARD, LINES);
+    mvhline(LINES - 1, 0, ACS_CKBOARD, COLS);
+
+    attron(A_BOLD | A_REVERSE);
+    mvprintw(0, 5, "Coconut Island");
+    mvprintw(LINES - 1, 5, "By Matthew S Underwood");
+    attroff(A_BOLD | A_REVERSE);
+
+    mvprintw(LINES - 3, 1, "What do you do?");
+    mvgetstr(LINES - 3, 17, command);
+    command[strcspn(command, "\n")] = '\0';
+		toLower(command);
+
+    strcpy(printBuffer, "");
+    action(command);
+    refresh();
   }
 
-  fclose(fpointer);
+  endwin();
 }
 
 int thunder() {
@@ -151,6 +89,12 @@ int thunder() {
 	return 0;
 }
 
+void toLower(char * str) {
+	for(int i = 0; str[i]; i++){
+		str[i] = tolower(str[i]);
+	}
+}
+
 int wordlen(const char * str) {
   int tempindex = 0;
   while (str[tempindex] != ' ' && str[tempindex] != 0 && str[tempindex] != '\n') {
@@ -159,8 +103,7 @@ int wordlen(const char * str) {
   return (tempindex);
 }
 
-void wrap(char * s,
-  const int wrapline) {
+void wrap(char * s, const int wrapline) {
 
   int index = 0;
   int curlinelen = 0;
@@ -183,52 +126,66 @@ void wrap(char * s,
 
 }
 
-int formatText(char * text, int y, int x, int maxX) {
+int formatText(char * text, int maxX) {
   wrap(text, maxX);
 }
 
-int main(int argc, char * argv[]) {
-
-  char command[20] = "INITIAL_COMMAND";
-
-  struct Location currentLocation;
-
-  getLocation(&currentLocation);
-
-  initscr();
-  scrollok(stdscr, true);
-
-  thunder();
-
-  while (strcmp(command, "quit")) {
-    clear();
-
-    if (strcmp(command, "INITIAL_COMMAND")) {
-      mvprintw(LINES * .5 + 1, 1, "You entered: %s\n", command);
-    }
-
-    formatText(currentLocation.neutralDescription, 1, 1, (COLS * .5) - 3);
-    attron(A_BOLD);
-    mvprintw(1, 0, currentLocation.name);
-    attroff(A_BOLD);
-    mvprintw(2, 0, currentLocation.neutralDescription);
-
-    mvhline(0, 0, ACS_BOARD, COLS);
-    mvvline(0, COLS * .5, ACS_BOARD, LINES);
-    mvhline(LINES - 1, 0, ACS_BOARD, COLS);
-
-    attron(A_BOLD | A_REVERSE);
-
-    mvprintw(0, 5, "Coconut Island");
-    mvprintw(LINES - 1, 5, "By Matthew S Underwood");
-    attroff(A_BOLD | A_REVERSE);
-
-    mvprintw(LINES * .5, 1, "What do you do?");
-    mvgetstr(LINES * .5, 17, command);
-    command[strcspn(command, "\n")] = '\0';
-    refresh();
-
-  }
-
-  endwin();
+void addToPrintBuffer(char * text) {
+    strcat(printBuffer, " ");
+    strcat(printBuffer, text);
 }
+
+Location currentLocation() {
+	size_t els = sizeof(locations)/sizeof(locations[0]);
+	for(int i = 0; i < els; ++i) {
+		if(strcmp(locations[i].name, currentLocationName) == 0) {
+			return locations[i];
+		}
+	}
+} 
+
+void movec(char * direction) {
+	if(strcmp(direction, "north") == 0) {
+		if(strcmp(currentLocation().northDestination, "None") == 0) {
+			addToPrintBuffer("You cannot.");
+		} else {
+			strcpy(currentLocationName, currentLocation().northDestination);
+		}
+	}
+	if(strcmp(direction, "east") == 0) {
+		if(strcmp(currentLocation().eastDestination, "None") == 0) {
+			addToPrintBuffer("You cannot.");
+		} else {
+			strcpy(currentLocationName, currentLocation().eastDestination);
+		}
+	}
+	if(strcmp(direction, "south") == 0) {
+		if(strcmp(currentLocation().southDestination, "None") == 0) {
+			addToPrintBuffer("You cannot.");
+		} else {
+			strcpy(currentLocationName, currentLocation().southDestination);
+		}
+	}
+	if(strcmp(direction, "west") == 0) {
+		if(strcmp(currentLocation().westDestination, "None") == 0) {
+			addToPrintBuffer("You cannot.");
+		} else {
+			strcpy(currentLocationName, currentLocation().westDestination);
+		}
+	}
+}
+
+void action(char * command) {
+  if (strstr(command, "n") != NULL || strstr(command, "north") != NULL) {
+    movec("north");
+  } else if (strcmp(command, "e") == 0 || strstr(command, "east") != NULL) {
+    movec("east");
+  } else if (strcmp(command, "s") == 0 || strstr(command, "south") != NULL) {
+    movec("south");
+  } else if (strcmp(command, "w") == 0 || strstr(command, "west") != NULL) {
+    movec("west");
+  } else {
+    addToPrintBuffer("You Cannot.");
+  }
+}
+
