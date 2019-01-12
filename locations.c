@@ -1,5 +1,4 @@
 typedef struct {
-	int id;
   char name[50];
   char northDestination[50];
   char northAccess[50];
@@ -20,12 +19,12 @@ typedef struct {
   char icon[1];
   bool visited;
   int temperature;
+  char items[5][25];
 } Location;
 
 Location locations[10];
 
 Location rickensDoor = {
-	0,
   "Ricken's Door",
   "None",
   "None",
@@ -45,27 +44,11 @@ Location rickensDoor = {
   "Yo this shack is ballin' outta control.",
   "_",
   true,
-  5
+  5,
+  {"Door"}
 };
 
-/*
-  {items}
-  [itemName}
-  Door
-  [itemVisualDescription]
-  A shoddy wooden door.
-  [itemLocationDescription]
-  The door to Ricken's hovel is locked.
-  [itemObtainable]
-  0
-  [itemOpen]
-  false
-  [itemEdible]
-  false
-*/
-
 Location rickensHovel = {
-	1,
   "Ricken's Hovel",  
   "None",
   "None",
@@ -85,7 +68,8 @@ Location rickensHovel = {
   "",
   "_",
   false,
-  6
+  6,
+  {"Ricken", "Rifle"}
 };
 
 void buildLocations() {
@@ -93,25 +77,6 @@ void buildLocations() {
 	locations[1] = rickensHovel;
 }
 
-/*
-"Items":[  
-    {  
-        "Name":"Ricken",
-        "Visual Description":"Ricken is a seaman if there ever was one. He has wispy silver hair that matches his moustaches. The moustaches, like his eyes and nose, are thin.",
-        "Location Description":"Ricken is standing by the fire, drinking.",
-        "Obtainable":0,
-        "Edible":false
-    },
-    {  
-        "Name":"Rifle",
-        "Visual Description":"A long, wooden rifle. You don't know enough to say more about it.",
-        "Location Description":"",
-        "Obtainable":1,
-        "Edible":false
-    }
-],
-*/
-  
     /*
     "Docks":{  
         "Direction":{  

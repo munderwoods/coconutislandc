@@ -6,8 +6,9 @@
 #include <unistd.h> 
 #include <SDL2/SDL.h> 
 #include "locations.c"
+#include "items.c"
 
-char printBuffer[1000] = "Welcome to coconut island. Travel is limited to cardinal directions, N, S, E, W.";
+char printBuffer[1000] = "";
 char locationBuffer[1000] = "";
 char command[20] = "INITIAL_COMMAND";
 char currentLocationName[20] = "Ricken's Door";
@@ -19,12 +20,14 @@ void wrap(char * s, const int wrapline);
 int formatText(char * text, int maxX);
 void addToPrintBuffer(char * text); 
 Location currentLocation();
+void printLocalItems();
 
 void movec(char * direction); 
 void action(char * command); 
 
 int main(int argc, char * argv[]) {
 	buildLocations();
+	buildItems();
 
   initscr();
   scrollok(stdscr, true);
@@ -35,6 +38,7 @@ int main(int argc, char * argv[]) {
     clear();
 
 		strcpy(locationBuffer, currentLocation().neutralDescription);
+    printLocalItems();
 
     if (strcmp(command, "INITIAL_COMMAND")) {
       mvprintw(LINES - 2 + 1, 1, "You entered: %s\n", command);
@@ -176,7 +180,7 @@ void movec(char * direction) {
 }
 
 void action(char * command) {
-  if (strstr(command, "n") != NULL || strstr(command, "north") != NULL) {
+  if (strcmp(command, "n") == 0 || strstr(command, "north") != NULL) {
     movec("north");
   } else if (strcmp(command, "e") == 0 || strstr(command, "east") != NULL) {
     movec("east");
@@ -184,8 +188,36 @@ void action(char * command) {
     movec("south");
   } else if (strcmp(command, "w") == 0 || strstr(command, "west") != NULL) {
     movec("west");
+  } else if (strcmp(command, "h") == 0 || strstr(command, "help") != NULL) {
+    addToPrintBuffer("Welcome to coconut island. Travel is limited to cardinal directions, N, S, E, W.");
+  } else if (strstr(command, "look") != NULL) {
+    int a;
+    int b;
+    for (a = 0; a < sizeof(currentLocation().items) / sizeof(currentLocation().items[0]); a++) {
+      char currentItem[200]; 
+      strcpy(currentItem, currentLocation().items[a]);
+      toLower(currentItem);
+      if(strstr(command, currentItem)  != NULL) {
+        for (b = 0; b < sizeof(items) / sizeof(items[0]); b++) {
+          if(strcmp(currentLocation().items[a], items[b].name)  == 0 && strcmp(currentLocation().items[a], "")) {
+            addToPrintBuffer(items[b].visualDescription);
+          } 
+        }
+      }
+    }
   } else {
     addToPrintBuffer("You Cannot.");
   }
 }
 
+void printLocalItems() {
+  int a;
+  int b;
+  for (a = 0; a < sizeof(currentLocation().items) / sizeof(currentLocation().items[0]); a++) {
+    for (b = 0; b < sizeof(items) / sizeof(items[0]); b++) {
+      if(strcmp(currentLocation().items[a], items[b].name)  == 0) {
+        addToPrintBuffer(items[b].locationDescription);
+      }
+    }
+  }
+}

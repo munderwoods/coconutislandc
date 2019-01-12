@@ -1,105 +1,46 @@
-struct Location {
+typedef struct {
   char name[50];
-  char northDestination[50];
-  char northAccess[50];
-  char eastDestination[50];
-  char eastAccess[50];
-  char southDestination[50];
-  char southAccess[50];
-  char westDestination[50];
-  char westAccess[50];
-  char hiddenDestination1[50];
-  char hiddenAccess1[50];
-  char hiddenDestination2[50];
-  char hiddenAccess2[50];
-  char neutralDescription[300];
-  char effectedDescription1[300];
-  char effectedDescription2[300];
-  char firstVisitText[300];
-  char icon;
-  bool visited;
-  int temperature;
+  char visualDescription[300];
+  char locationDescription[300];
+  int obtainable;
+  bool open;
+  bool edible;
+} Item;
+
+Item items[10];
+
+Item Door = {
+  "Door",
+  "A shoddy wooden door.",
+  "The door to Ricken's hovel is locked.",
+  0,
+  false,
+  false
 };
 
-struct Location  rickensDoor = {
-  "Ricken's Door",
-  "None",
-  "None",
-  "None",
-  "None",
-  "None",
-  "None",
-  "None",
-  "None",
-  "Docks",
-  "Open",
-  "Ricken's Hovel",
-  "Open",
-  "You stand in front of Ricken's door. It's east of you. His home is a dilapidated shack in a row of dilapidated shacks that line the waterfront. North of you is the docks. The crowd at the boats is impassable. The cobblestone is slippery under your boots.",
-  "You stand in front of Ricken's door. It's east of you. His home is a dilapidated shack in a row of dilapidated shacks that line the waterfront. North of you is the docks. Ricken has cleared a path through to the boats. The cobblestone is slippery under your boots.",
+Item Ricken = {
+  "Ricken",
+  "Ricken is a seaman if there ever was one. He has wispy silver hair that matches his moustaches. The moustaches, like his eyes and nose, are thin.",
+  "Ricken is standing by the fire, drinking.",
+  0,
+  false
+};
+
+Item Rifle = {
+  "Rifle",
+  "A long, wooden rifle. You don't know enough to say more about it.",
   "",
-  "",
-  "_",
-  true,
-  5
+  1,
+  false
+};
+
+void buildItems() {
+	items[0] = Door;
+	items[1] = Ricken;
+	items[2] = Rifle;
 }
-/*
-  {items}
-  [itemName}
-  Door
-  [itemVisualDescription]
-  A shoddy wooden door.
-  [itemLocationDescription]
-  The door to Ricken's hovel is locked.
-  [itemObtainable]
-  0
-  [itemOpen]
-  false
-  [itemEdible]
-  false
-***
-    "Ricken's Hovel":{  
-        "Direction":{  
-            "North":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "East":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "South":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "West":{  
-                "Destination":"Ricken's Door",
-                "Access":"Open"
-            }
-        },
-        "Description":{  
-            "Neutral":"A small room lit by a mostly open fire with a cast iron pot hung over it. There are rum bottles scattered across the floor. The door to the west leads outside."
-        },
-        "Items":[  
-            {  
-                "Name":"Ricken",
-                "Visual Description":"Ricken is a seaman if there ever was one. He has wispy silver hair that matches his moustaches. The moustaches, like his eyes and nose, are thin.",
-                "Location Description":"Ricken is standing by the fire, drinking.",
-                "Obtainable":0,
-                "Edible":false
-            },
-            {  
-                "Name":"Rifle",
-                "Visual Description":"A long, wooden rifle. You don't know enough to say more about it.",
-                "Location Description":"",
-                "Obtainable":1,
-                "Edible":false
-            }
-        ],
-        "Icon":"_",
-        "Visited":false,
-        "Temperature":6
-    },
+
+    /*
     "Docks":{  
         "Direction":{  
             "North":{  
@@ -468,3 +409,5 @@ struct Location  rickensDoor = {
         "Temperature":5
     }
 }
+*/
+
