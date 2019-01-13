@@ -73,8 +73,8 @@ Location rickensHovel = {
 };
 
 void buildLocations() {
-	locations[0] = rickensDoor;
-	locations[1] = rickensHovel;
+  locations[0] = rickensDoor;
+  locations[1] = rickensHovel;
 }
 
     /*

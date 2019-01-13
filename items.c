@@ -35,9 +35,9 @@ Item Rifle = {
 };
 
 void buildItems() {
-	items[0] = Door;
-	items[1] = Ricken;
-	items[2] = Rifle;
+  items[0] = Door;
+  items[1] = Ricken;
+  items[2] = Rifle;
 }
 
     /*
