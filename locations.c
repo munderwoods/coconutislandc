@@ -69,7 +69,7 @@ Location rickensHovel = {
   "_",
   false,
   6,
-  {"Ricken", "Rifle"}
+  {"Ricken"}
 };
 
 void buildLocations() {

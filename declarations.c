@@ -4,7 +4,7 @@ char inventoryBuffer[1000] = "";
 
 char command[20] = "INITIAL_COMMAND";
 char currentLocationName[20] = "Ricken's Door";
-char inventory[20][25];
+char inventory[20][25] = {"Gold Bar"};
 
 int thunder();
 
@@ -25,4 +25,5 @@ void printLocalItems();
 void movec(char * direction); 
 void obtainItem(char * itemName, int obtainability); 
 void dropItem(char * itemName); 
+void deleteItem(char * itemName); 
 void action(char * command); 

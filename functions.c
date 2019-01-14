@@ -139,14 +139,7 @@ void obtainItem(char * itemName, int obtainability) {
   }
 
   if(obtainability != 2) {
-    Location *ptr_location;  
-    ptr_location = currentLocationPointer();
-    int b;
-    for(b = 0; b < sizeof(currentLocation().items) / sizeof(currentLocation().items[0]); b++) {
-      if(strMatch(currentLocation().items[b], itemName)) {
-        strcpy(ptr_location->items[b], "");
-      }
-    }
+    deleteItem(itemName);
   }
 
   addToPrintBuffer("Added to inventory.");
@@ -171,6 +164,17 @@ void dropItem(char * itemName) {
   }
 
   addToPrintBuffer("Removed from inventory.");
+}
+
+void deleteItem(char * itemName) {
+  Location *ptr_location;  
+  ptr_location = currentLocationPointer();
+  int i;
+  for(i = 0; i < sizeof(currentLocation().items) / sizeof(currentLocation().items[0]); i++) {
+    if(strMatch(currentLocation().items[i], itemName)) {
+      strcpy(ptr_location->items[i], "");
+    }
+  }
 }
 
 void action(char * command) {
@@ -243,7 +247,11 @@ void action(char * command) {
         }
       }
     }
-  } else if (strMatch(currentLocation().name, "Ricken's Door") && !getItem("Door").open && (strContain(command, "knock") || strContain(command, "rap") || strContain(command, "tap"))) {
+  } else if (
+      strMatch(currentLocation().name, "Ricken's Door") && 
+      !getItem("Door").open && 
+      (strContain(command, "knock") || strContain(command, "rap") || strContain(command, "tap"))
+    ){
     addToPrintBuffer("You rap on Ricken's door twelve times before he opens it and bids you come in.");
     Item *ptr_door;  
     ptr_door = getItemPointer("Door");
@@ -253,6 +261,16 @@ void action(char * command) {
     ptr_location = currentLocationPointer();
     strcpy(ptr_location->eastDestination, "Ricken's Hovel");
     strcpy(ptr_location->eastAccess, "Open");
+  } else if (strMatch(currentLocation().name, "Ricken's Hovel") && strContain(command, "talk")) {
+    addToPrintBuffer("\"Take me with you,\" you plead. The storm bursts the window and sheets of rain crash on your faces. Ricken's voice is plodding. \"Boat holds four.\" \"Leave the others,\" you stammer, \"Just take me. I'm a doctor. Who knows how long it'll be until you get picked up?\" Ricken's face doesn't change. He says, \"Show it to me.\"");
+  } else if (
+      strMatch(currentLocation().name, "Ricken's Hovel") &&
+      strContain(command, "gold") && 
+      (strContain(command, "give") || strContain(command, "hand") || strContain(command, "show") || strContain(command, "ricken"))
+    ){
+    addToPrintBuffer("You stare at eachother. Your body shakes. The place is coming down around you. You start to pull the gold bar from your pocket. The orange light from the fire gleams against the trident emblem stamped into the side of the bar. When Ricken sees it he pushes the bar back into your pocket and retrieves two rifles from a case over the mantle. He hands you one of them then walks out to the docks.");
+    obtainItem("Rifle", 1);
+    deleteItem("Ricken");
   } else {
     addToPrintBuffer("You Cannot.");
   }

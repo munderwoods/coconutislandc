@@ -34,10 +34,19 @@ Item Rifle = {
   false
 };
 
+Item Gold = {
+  "Gold Bar", 
+  "Solid gold is heavy and this is a lot of it. There is a trident stamped into the side.",
+  "There is a gold bar here. A big one.", 
+  1, 
+  false
+};
+
 void buildItems() {
   items[0] = Door;
   items[1] = Ricken;
   items[2] = Rifle;
+  items[3] = Gold;
 }
 
     /*
