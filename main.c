@@ -36,7 +36,9 @@ int main(int argc, char * argv[]) {
     }
     
     formatText(inventoryBuffer, (COLS * .5) - 3);
-    mvprintw(LINES * .5, (COLS * .5) + 5, "INVENTORY");
+    attron(A_BOLD | A_REVERSE);
+    mvprintw(LINES * .5, (COLS * .5) + 5, "  I N V E N T O R Y  ");
+    attroff(A_BOLD | A_REVERSE);
     mvprintw((LINES * .5) + 1, (COLS * .5) + 5, inventoryBuffer);
 
     mvhline(0, 0, ACS_CKBOARD, COLS);

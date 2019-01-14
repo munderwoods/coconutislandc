@@ -80,6 +80,24 @@ Location *currentLocationPointer() {
   }
 } 
 
+Item getItem(char * itemName) {
+  size_t els = sizeof(items)/sizeof(items[0]);
+  for(int i = 0; i < els; ++i) {
+    if(strMatch(items[i].name, itemName)) {
+      return items[i];
+    }
+  }
+} 
+
+Item *getItemPointer(char * itemName) {
+  size_t els = sizeof(items)/sizeof(items[0]);
+  for(int i = 0; i < els; ++i) {
+    if(strMatch(items[i].name, itemName)) {
+      return &items[i];
+    }
+  }
+} 
+
 void movec(char * direction) {
   if(strMatch(direction, "north")) {
     if(strMatch(currentLocation().northDestination, "None")) {
@@ -225,6 +243,16 @@ void action(char * command) {
         }
       }
     }
+  } else if (strMatch(currentLocation().name, "Ricken's Door") && !getItem("Door").open && (strContain(command, "knock") || strContain(command, "rap") || strContain(command, "tap"))) {
+    addToPrintBuffer("You rap on Ricken's door twelve times before he opens it and bids you come in.");
+    Item *ptr_door;  
+    ptr_door = getItemPointer("Door");
+    strcpy(ptr_door->locationDescription, "The door to Ricken's Hovel is open.");
+    ptr_door->open = true; 
+    Location *ptr_location;  
+    ptr_location = currentLocationPointer();
+    strcpy(ptr_location->eastDestination, "Ricken's Hovel");
+    strcpy(ptr_location->eastAccess, "Open");
   } else {
     addToPrintBuffer("You Cannot.");
   }

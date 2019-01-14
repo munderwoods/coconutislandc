@@ -17,6 +17,9 @@ void wrap(char * s, const int wrapline);
 int formatText(char * text, int maxX);
 void addToPrintBuffer(char * text); 
 Location currentLocation();
+Location *currentLocationPointer();
+Item getItem(char * itemName);
+Item *getItemPointer(char * itemName);
 void printLocalItems();
 
 void movec(char * direction); 
