@@ -163,12 +163,9 @@ void obtainItem(char * itemName, int obtainability) {
       break;
     }
   }
-
   if(obtainability != 2) {
     deleteItem(itemName);
   }
-
-  addToPrintBuffer("Added to inventory.");
 }
 
 void dropItem(char * itemName) {
@@ -181,15 +178,12 @@ void dropItem(char * itemName) {
       break;
     }
   }
-
   int b;
   for(b = 0; b < sizeof(inventory) / sizeof(inventory[0]); b++) {
     if(strMatch(inventory[b], itemName)) {
       strcpy(inventory[b], "");
     }
   }
-
-  addToPrintBuffer("Removed from inventory.");
 }
 
 void deleteItem(char * itemName) {

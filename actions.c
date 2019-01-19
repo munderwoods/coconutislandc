@@ -51,6 +51,11 @@ void action(char * command) {
         for (b = 0; b < sizeof(items) / sizeof(items[0]); b++) {
           if(strMatch(currentLocation().items[a], items[b].name) && !strMatch(currentLocation().items[a], "") && items[b].obtainable > 0) {
             obtainItem(items[b].name, items[b].obtainable);
+            char str[1000]; 
+            strcpy(str, "Added "); 
+            strcat(str, items[b].name); 
+            strcat(str, " to inventory."); 
+            addToPrintBuffer(str);
           } 
         }
       }
@@ -67,6 +72,11 @@ void action(char * command) {
         for (b = 0; b < sizeof(items) / sizeof(items[0]); b++) {
           if(strMatch(inventory[a], items[b].name) && !strMatch(inventory[a], "")) {
             dropItem(items[b].name);
+            char str[1000]; 
+            strcpy(str, "Removed "); 
+            strcat(str, items[b].name); 
+            strcat(str, " from inventory."); 
+            addToPrintBuffer(str);
           } 
         }
       }
