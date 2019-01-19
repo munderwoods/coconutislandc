@@ -1,6 +1,4 @@
 #include "links.c"
-#include "declarations.c"
-#include "functions.c"
 
 int main(int argc, char * argv[]) {
   buildLocations();
@@ -14,7 +12,7 @@ int main(int argc, char * argv[]) {
   while (!strMatch(command, "quit")) {
     clear();
 
-    strcpy(locationBuffer, currentLocation().neutralDescription);
+    strcpy(locationBuffer, currentLocation().description);
     printLocalItems();
 
     formatText(locationBuffer, (COLS * .5) - 3);

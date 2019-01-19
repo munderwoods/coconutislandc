@@ -8,14 +8,8 @@ typedef struct {
   char southAccess[50];
   char westDestination[50];
   char westAccess[50];
-  char hiddenDestination1[50];
-  char hiddenAccess1[50];
-  char hiddenDestination2[50];
-  char hiddenAccess2[50];
-  char neutralDescription[300];
-  char effectedDescription1[300];
-  char effectedDescription2[300];
-  char firstVisitText[300];
+  char description[500];
+  char firstVisitText[500];
   char icon[1];
   bool visited;
   int temperature;
@@ -26,22 +20,16 @@ Location locations[10];
 
 Location rickensDoor = {
   "Ricken's Door",
-  "None",
-  "None",
-  "None",
-  "None",
-  "None",
-  "None",
-  "None",
-  "None",
   "Docks",
-  "Open",
+  "None",
   "Ricken's Hovel",
-  "Open",
+  "None",
+  "None",
+  "None",
+  "None",
+  "None",
   "You stand in front of Ricken's door. It's east of you. His home is a dilapidated shack in a row of dilapidated shacks that line the waterfront. North of you is the docks. The crowd at the boats is impassable. The cobblestone is slippery under your boots.",
-  "You stand in front of Ricken's door. It's east of you. His home is a dilapidated shack in a row of dilapidated shacks that line the waterfront. North of you is the docks. Ricken has cleared a path through to the boats. The cobblestone is slippery under your boots.",
   "",
-  "Yo this shack is ballin' outta control.",
   "_",
   true,
   5,
@@ -58,13 +46,7 @@ Location rickensHovel = {
   "None",
   "Ricken's Door",
   "Open",
-  "None",
-  "None",
-  "None",
-  "None",
   "A small room lit by a mostly open fire with a cast iron pot hung over it. There are rum bottles scattered across the floor. The door to the west leads outside.",
-  "",
-  "",
   "",
   "_",
   false,
@@ -72,42 +54,31 @@ Location rickensHovel = {
   {"Ricken"}
 };
 
+Location docks = {
+  "Docks",
+  "None",
+  "None",
+  "None",
+  "None",
+  "None",
+  "None",
+  "None",
+  "None",
+  "The entire population of the island is at the docks trying to get passage on a boat. One trawler is inundated with flesh and taking on water. Ricken's men are fending them off with spears. Ricken stands at the edge of his boat with his rifle on his hip waiting for you.",
+  "As the crowd encroahces on his boat, Ricken fires his rifle into the air. The scene goes quiet except for one woman with a baby. She sees you waiver as you board and she pleads for you to take the child. You look away and she pushes it under your arm. You throw your hands up and the kid goes into the drink. She goes onto her knees. Two of the men leap at you.",
+  "_",
+  false,
+  5,
+  {},
+};
+
 void buildLocations() {
   locations[0] = rickensDoor;
   locations[1] = rickensHovel;
+  locations[2] = docks;
 }
 
     /*
-    "Docks":{  
-        "Direction":{  
-            "North":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "East":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "South":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "West":{  
-                "Destination":"None",
-                "Access":"None"
-            }
-        },
-        "Description":{  
-            "Neutral":"The entire population of the island is at the docks trying to get passage on a boat. One trawler is inundated with flesh and taking on water. Ricken's men are fending them off with spears. Ricken stands at the edge of his boat with his rifle on his hip waiting for you."
-        },
-        "Items":[  
-
-        ],
-        "Icon":"_",
-        "Visited":false,
-        "First Visit Text":"As the crowd encroahces on his boat, Ricken fires his rifle into the air. The scene goes quiet except for one woman with a baby. She sees you waiver as you board and she pleads for you to take the child. You look away and she pushes it under your arm. You throw your hands up and the kid goes into the drink. She goes onto her knees. Two of the men leap at you.",
-        "Temperature":5
-    },
     "Unconscious":{  
         "Direction":{  
             "North":{  

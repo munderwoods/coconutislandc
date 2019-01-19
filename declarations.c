@@ -18,9 +18,13 @@ int formatText(char * text, int maxX);
 void addToPrintBuffer(char * text); 
 Location currentLocation();
 Location *currentLocationPointer();
+Location getLocationByName(char * locationName);
+Location *getLocationByNamePointer(char * locationName);
 Item getItem(char * itemName);
 Item *getItemPointer(char * itemName);
 void printLocalItems();
+void setLocationDescription(char * locationName, char * newDescription); 
+void setLocationDestinationAccess(char * locationName, char * destination, char * newAcess); 
 
 void movec(char * direction); 
 void obtainItem(char * itemName, int obtainability); 

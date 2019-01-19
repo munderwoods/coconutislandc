@@ -7,3 +7,6 @@
 #include <SDL2/SDL.h> 
 #include "locations.c"
 #include "items.c"
+#include "declarations.c"
+#include "functions.c"
+#include "actions.c"
