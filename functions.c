@@ -231,3 +231,17 @@ void setLocationProperty(char * locationName, char * property, char * newValue) 
   }
 }
 
+void setItemProperty(char * itemName, char * property, char * newValue) {
+  Item *ptr_item;  
+  ptr_item = getItemPointer(itemName);
+  if(strMatch(property, "locationDescription")) {
+    strcpy(ptr_item->locationDescription, "The door to Ricken's Hovel is open.");
+  }else if(strMatch(property, "open")) {
+    if(strMatch(newValue, "true")) {
+      ptr_item->open = true;
+    } else if(strMatch(newValue, "false")) {
+      ptr_item->open = false;
+    }
+  }
+}
+

@@ -78,10 +78,8 @@ void action(char * command) {
       (strContain(command, "knock") || strContain(command, "rap") || strContain(command, "tap"))
     ){
     addToPrintBuffer("You rap on Ricken's door twelve times before he opens it and bids you come in.");
-    Item *ptr_door;  
-    ptr_door = getItemPointer("Door");
-    strcpy(ptr_door->locationDescription, "The door to Ricken's Hovel is open.");
-    ptr_door->open = true; 
+    setItemProperty("Door", "locationDescription", "The door to Ricken's Hovel is open.");
+    setItemProperty("Door", "open", "true");
     setLocationProperty("Ricken's Door", "eastAccess", "Open");
   } else if (strMatch(currentLocation().name, "Ricken's Hovel") && strContain(command, "talk")) {
     addToPrintBuffer("\"Take me with you,\" you plead. The storm bursts the window and sheets of rain crash on your faces. Ricken's voice is plodding. \"Boat holds four.\" \"Leave the others,\" you stammer, \"Just take me. I'm a doctor. Who knows how long it'll be until you get picked up?\" Ricken's face doesn't change. He says, \"Show it to me.\"");

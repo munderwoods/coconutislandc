@@ -23,8 +23,8 @@ Location *getLocationByNamePointer(char * locationName);
 Item getItem(char * itemName);
 Item *getItemPointer(char * itemName);
 void printLocalItems();
-void setLocationDescription(char * locationName, char * newDescription); 
-void setLocationDestinationAccess(char * locationName, char * destination, char * newAcess); 
+void setLocationProperty(char * locationName, char * property, char * newValue); 
+void setItemProperty(char * itemName, char * property, char * newValue); 
 
 void movec(char * direction); 
 void obtainItem(char * itemName, int obtainability); 
