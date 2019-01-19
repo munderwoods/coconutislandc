@@ -197,6 +197,16 @@ void deleteItem(char * itemName) {
   }
 }
 
+bool itemInInventory(char * itemName) {
+  int i;
+  for(i = 0; i < sizeof(inventory) / sizeof(inventory[0]); i++) {
+    if(strMatch(inventory[i], itemName)) {
+      return true;
+    }
+  }
+  return false;
+}
+
 void printLocalItems() {
   int a;
   int b;

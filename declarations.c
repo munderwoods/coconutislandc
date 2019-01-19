@@ -30,4 +30,6 @@ void movec(char * direction);
 void obtainItem(char * itemName, int obtainability); 
 void dropItem(char * itemName); 
 void deleteItem(char * itemName); 
+bool itemInInventory(char * itemName); 
+
 void action(char * command); 

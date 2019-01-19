@@ -72,42 +72,32 @@ Location docks = {
   {},
 };
 
+Location unconscious = {
+  "Unconscious",  
+  "None",
+  "None",
+  "None",
+  "None",
+  "None",
+  "None",
+  "None",
+  "None",
+  "You are unconscious.",
+  "",
+  "_",
+  false,
+  5,
+  {},
+};
+
 void buildLocations() {
   locations[0] = rickensDoor;
   locations[1] = rickensHovel;
   locations[2] = docks;
+  locations[3] = unconscious;
 }
 
     /*
-    "Unconscious":{  
-        "Direction":{  
-            "North":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "East":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "South":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "West":{  
-                "Destination":"None",
-                "Access":"None"
-            }
-        },
-        "Description":{  
-            "Neutral":"You are unconscious."
-        },
-        "Items":[  
-
-        ],
-        "Icon":"_",
-        "Visited":false,
-        "Temperature":5
-    },
     "Ocean":{  
         "Direction":{  
             "North":{  

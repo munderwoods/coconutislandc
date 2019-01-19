@@ -29,7 +29,7 @@ Item Ricken = {
 Item Rifle = {
   "Rifle",
   "A long, wooden rifle. You don't know enough to say more about it.",
-  "",
+  "There is an old rifle here.",
   1,
   false
 };
