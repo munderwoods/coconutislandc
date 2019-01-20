@@ -90,322 +90,145 @@ Location unconscious = {
   {},
 };
 
+Location shore = {
+  "Shore", 
+  "Ocean",
+  "Water",
+  "None",
+  "None",
+  "Jungle",
+  "Open",
+  "Delta",
+  "Open",
+  "The sand is gray, as is everything. The sea is north. To the east and west there is more beach. South there is a path into the jungle. A bare, black crag juts out from its center.",
+  "",
+  ".",
+  true,
+  5,
+  {"Sand", "Boat"},
+};
+
+Location ocean = {
+  "Ocean",  
+  "None",
+  "None",
+  "None",
+  "None",
+  "Shore",
+  "Shore",
+  "None",
+  "None",
+  "You are on a small boat on a roiling sea. The sky is blotched with dark, gray clouds. It fades into the ocean in all directions save to the south. There you see a sliver of dark between the peaks of the waves.",
+  "",
+  "W",
+  false,
+  5,
+  {},
+};
+
+Location jungle = {
+  "Jungle",  
+  "Shore",
+  "Open",
+  "None",
+  "None",
+  "Cave",
+  "Open",
+  "None",
+  "None",
+  "The air in the jungle is thick. You can only cut a narrow path through. Huge ferns sweep past your legs as you walk. They could be hiding anything. To the south, almost hidden behind a huge, moss covered rock, you find the entrance to the cave. To the east and west there is more jungle. You can hear the ocean to the north.",
+  "",
+  "J",
+  false,
+  5,
+  {"Coconut", "Ferns", "Woods", "Vines"},
+};
+
+Location cave = {
+  "Cave", 
+  "Jungle",
+  "Open",
+  "None",
+  "None",
+  "Chamber",
+  "Open",
+  "None",
+  "None",
+  "You are in a dark cave. The walls are wet and slick. After your eyes adjust you can see what appears to be a switch set into the wall high above you.",
+  //"Effected":"Everything around you is on fire. There is a large crack to the north. You can see jungle beyond it. To the south there is a low opening."
+  "",
+  "C",
+  false,
+  4,
+  {},
+};
+
+Location chamber = {
+  "Chamber",  
+  "Cave",
+  "Open",
+  "None",
+  "None",
+  "None",
+  "None",
+  "None",
+  "None",
+  "This is a smaller cave. The walls are jagged and shiny.",
+  "",
+  "F",
+  false,
+  4,
+  {"Flint"},
+};
+
+Location delta = {
+  "Delta",  
+  "Ocean",
+  "Water",
+  "Shore",
+  "Open",
+  "Waterfall",
+  "Climb",
+  "None",
+  "None",
+  "A narrow but deep river meets the sea here. There is some vegetation around the edges, but nothing of any apparent use. To the east is a stretch of beach. North is the ocean. To the south is a high waterfall. It's falling from a cliff. There are hand holds in the cliff, but you have never climbed anything that didn't have rungs.",
+  "",
+  "V",
+  false,
+  5,
+  {"Water", "Berries", "Cloth"},
+};
+
+Location waterfall = {
+  "North", 
+  "Delta",
+  "Climb",
+  "None",
+  "None",
+  "None",
+  "None",
+  "None",
+  "None",
+  "You stand at the edge of a sheer cliff. It is as high as a three story building. A deep river comes from the South and flows over the cliff. The sound of the falling water is deafening. You might be able to climb down here, but the thought of it make your chest tighten up and your stomach drop.",
+  "",
+  "W",
+  false,
+  5,
+  {"Water"},
+};
+
 void buildLocations() {
   locations[0] = rickensDoor;
   locations[1] = rickensHovel;
   locations[2] = docks;
   locations[3] = unconscious;
+  locations[4] = shore;
+  locations[5] = ocean;
+  locations[6] = jungle;
+  locations[7] = cave;
+  locations[8] = chamber;
+  locations[9] = delta;
+  locations[10] = waterfall;
 }
 
-    /*
-    "Ocean":{  
-        "Direction":{  
-            "North":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "East":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "South":{  
-                "Destination":"Shore",
-                "Access":"Shore"
-            },
-            "West":{  
-                "Destination":"None",
-                "Access":"None"
-            }
-        },
-        "Description":{  
-            "Neutral":"You are on a small boat on a roiling sea. The sky is blotched with dark, gray clouds. It fades into the ocean in all directions save to the south. There you see a sliver of dark between the peaks of the waves."
-        },
-        "Items":[  
-
-        ],
-        "Icon":"\u223F",
-        "Visited":false,
-        "Temperature":5
-    },
-    "Shore":{  
-        "Direction":{  
-            "North":{  
-                "Destination":"Ocean",
-                "Access":"Water"
-            },
-            "East":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "South":{  
-                "Destination":"Jungle",
-                "Access":"Open"
-            },
-            "West":{  
-                "Destination":"Delta",
-                "Access":"Open"
-            }
-        },
-        "Description":{  
-            "Neutral":"The sand is gray, as is everything. The sea is north. To the east and west there is more beach. South there is a path into the jungle. A bare, black crag juts out from its center."
-        },
-        "Items":[  
-            {  
-                "Name":"Sand",
-                "Visual Description":"Fine, gray sand.",
-                "Location Description":"There is sand here.",
-                "Obtainable":2,
-                "Edible":false
-            },
-            {  
-                "Name":"Boat",
-                "Visual Description":"It's got room for four crew or some small cargo.",
-                "Location Description":"There is a boat here.",
-                "Obtainable":0,
-                "Edible":false,
-                "Holding":[  
-                    {  
-                        "Name":"Oar",
-                        "Visual Description":"A wooden oar that has been worn smooth and shiny from use.",
-                        "Location Description":"There is an oar sitting next to you.",
-                        "Obtainable":1,
-                        "Edible":false
-                    },
-                    {  
-                        "Name":"Paper",
-                        "Visual Description":"A blank sheet of paper. It would be perfect for drawing a map on.",
-                        "Location Description":"Ther is a rolled up piece of paper here.",
-                        "Obtainable":1,
-                        "Edible":false
-                    },
-                    {  
-                        "Name":"Pencil",
-                        "Visual Description":"A well-used pencil. You will have to be thoughtful and conserve it.",
-                        "Location Description":"There is a pencil here.",
-                        "Obtainable":1,
-                        "Edible":false
-                    }
-                ]
-            }
-        ],
-        "Icon":"\u2592",
-        "Visited":true,
-        "Temperature":5
-    },
-    "Jungle":{  
-        "Direction":{  
-            "North":{  
-                "Destination":"Shore",
-                "Access":"Open"
-            },
-            "East":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "South":{  
-                "Destination":"Cave",
-                "Access":"Open"
-            },
-            "West":{  
-                "Destination":"None",
-                "Access":"None"
-            }
-        },
-        "Description":{  
-            "Neutral":"The air in the jungle is thick. You can only cut a narrow path through. Huge ferns sweep past your legs as you walk. They could be hiding anything. To the south, almost hidden behind a huge, moss covered rock, you find the entrance to the cave. To the east and west there is more jungle. You can hear the ocean to the north."
-        },
-        "Items":[  
-            {  
-                "Name":"Coconut",
-                "Visual Description":"A round, Harry coconut.",
-                "Location Description":"There is a coconut half buried here.",
-                "Obtainable":1,
-                "Edible":false
-            },
-            {  
-                "Name":"Ferns",
-                "Visual Description":"The ferns are oozing a clear, sticky substance.",
-                "Location Description":"There are sticky ferns here.",
-                "Obtainable":2,
-                "Edible":false
-            },
-            {  
-                "Name":"Wood",
-                "Visual Description":"A small bit of wood.",
-                "Location Description":"There is wood here.",
-                "Obtainable":2,
-                "Edible":false
-            },
-            {  
-                "Name":"Vines",
-                "Visual Description":"Some long, thin vines that curl around the trees here. They are dark green and shine in the sunlight.",
-                "Location Description":"There are some vines here.",
-                "Obtainable":2,
-                "Edible":false
-            }
-        ],
-        "Icon":"J",
-        "Visited":false,
-        "Temperature":5
-    },
-    "Cave":{  
-        "Direction":{  
-            "North":{  
-                "Destination":"Jungle",
-                "Access":"Open"
-            },
-            "East":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "South":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "West":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "Hidden":{  
-                "Destination":"Chamber",
-                "Access":"Open"
-            }
-        },
-        "Description":{  
-            "Neutral":"You are in a dark cave. The walls are wet and slick. After your eyes adjust you can see what appears to be a switch set into the wall high above you.",
-            "Effected":"Everything around you is on fire. There is a large crack to the north. You can see jungle beyond it. To the south there is a low opening."
-        },
-        "Items":[  
-
-        ],
-        "Icon":"C",
-        "Visited":false,
-        "Temperature":4
-    },
-    "Chamber":{  
-        "Direction":{  
-            "North":{  
-                "Destination":"Cave",
-                "Access":"Open"
-            },
-            "East":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "South":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "West":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "Hidden":{  
-                "Destination":"None",
-                "Access":"None"
-            }
-        },
-        "Description":{  
-            "Neutral":"This is a smaller cave. The walls are jagged and shiny.",
-            "Effected":""
-        },
-        "Items":[  
-            {  
-                "Name":"Flint",
-                "Visual Description":"A shiny, smooth stone with sharp edges.",
-                "Location Description":"There is flint here.",
-                "Obtainable":2,
-                "Edible":false
-            }
-        ],
-        "Icon":"F",
-        "Visited":false,
-        "Temperature":4
-    },
-    "Delta":{  
-        "Direction":{  
-            "North":{  
-                "Destination":"Ocean",
-                "Access":"Water"
-            },
-            "East":{  
-                "Destination":"Shore",
-                "Access":"Open"
-            },
-            "South":{  
-                "Destination":"Waterfall",
-                "Access":"Climb"
-            },
-            "West":{  
-                "Destination":"None",
-                "Access":"None"
-            }
-        },
-        "Description":{  
-            "Neutral":"A narrow but deep river meets the sea here. There is some vegetation around the edges, but nothing of any apparent use. To the east is a stretch of beach. North is the ocean. To the south is a high waterfall. It's falling from a cliff. There are hand holds in the cliff, but you have never climbed anything that didn't have rungs."
-        },
-        "Items":[  
-            {  
-                "Name":"Water",
-                "Visual Description":"The water is clear and looks refreshing.",
-                "Location Description":"The water appears clean and drinkable.",
-                "Obtainable":2,
-                "Edible":false
-            },
-            {  
-                "Name":"Berries",
-                "Visual Description":"Small, red berries.",
-                "Location Description":"There are some wild berries here.",
-                "Obtainable":2,
-                "Edible":true
-            },
-            {  
-                "Name":"Cloth",
-                "Visual Description":"It appears to be a piece of an old ship mast.",
-                "Location Description":"There is some tattered cloth here.",
-                "Obtainable":1,
-                "Edible":false
-            }
-        ],
-        "Icon":"V",
-        "Visited":false,
-        "Temperature":5
-    },
-    "Waterfall":{  
-        "Direction":{  
-            "North":{  
-                "Destination":"Delta",
-                "Access":"Climb"
-            },
-            "East":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "South":{  
-                "Destination":"None",
-                "Access":"None"
-            },
-            "West":{  
-                "Destination":"None",
-                "Access":"None"
-            }
-        },
-        "Description":{  
-            "Neutral":"You stand at the edge of a sheer cliff. It is as high as a three story building. A deep river comes from the South and flows over the cliff. The sound of the falling water is deafening. You might be able to climb down here, but the thought of it make your chest tighten up and your stomach drop."
-        },
-        "Items":[  
-            {  
-                "Name":"Water",
-                "Visual Description":"The water is clear and looks refreshing.",
-                "Location Description":"The water appears clean and drinkable.",
-                "Obtainable":2,
-                "Edible":false
-            }
-        ],
-        "Icon":"W",
-        "Visited":false,
-        "Temperature":5
-    }
-}
-*/
 

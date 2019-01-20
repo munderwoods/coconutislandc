@@ -29,7 +29,8 @@ void setItemProperty(char * itemName, char * property, char * newValue);
 void movec(char * direction); 
 void obtainItem(char * itemName, int obtainability); 
 void dropItem(char * itemName); 
-void deleteItem(char * itemName); 
+void deleteInventoryItem(char * itemName); 
+void deleteLocationItem(char * itemName); 
 bool itemInInventory(char * itemName); 
 
 void action(char * command); 

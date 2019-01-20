@@ -164,7 +164,7 @@ void obtainItem(char * itemName, int obtainability) {
     }
   }
   if(obtainability != 2) {
-    deleteItem(itemName);
+    deleteLocationItem(itemName);
   }
 }
 
@@ -186,13 +186,22 @@ void dropItem(char * itemName) {
   }
 }
 
-void deleteItem(char * itemName) {
+void deleteLocationItem(char * itemName) {
   Location *ptr_location;  
   ptr_location = currentLocationPointer();
   int i;
   for(i = 0; i < sizeof(currentLocation().items) / sizeof(currentLocation().items[0]); i++) {
     if(strMatch(currentLocation().items[i], itemName)) {
       strcpy(ptr_location->items[i], "");
+    }
+  }
+}
+
+void deleteInventoryItem(char * itemName) {
+  int b;
+  for(b = 0; b < sizeof(inventory) / sizeof(inventory[0]); b++) {
+    if(strMatch(inventory[b], itemName)) {
+      strcpy(inventory[b], "");
     }
   }
 }
