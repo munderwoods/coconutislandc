@@ -173,7 +173,7 @@ void dropItem(char * itemName) {
   ptr_location = currentLocationPointer();
   int a;
   for(a = 0; a < sizeof(currentLocation().items) / sizeof(currentLocation().items[0]); a++) {
-    if(strMatch(currentLocation().items[a], "")) {
+    if(strMatch(currentLocation().items[a], "") && getItem(itemName).obtainable != 2) {
       strcpy(ptr_location->items[a], itemName);
       break;
     }
@@ -258,3 +258,12 @@ void setItemProperty(char * itemName, char * property, char * newValue) {
   }
 }
 
+char * makeBar(int stat) {
+  char on[1] = " ";
+  char *barTemp = malloc(10);
+  int i;
+  for(i = 0; i < stat; i++) {
+    barTemp[i] = *on;
+  }
+  return barTemp;
+}

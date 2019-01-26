@@ -15,7 +15,7 @@ Item Door = {
   "The door to Ricken's hovel is locked.",
   0,
   false,
-  false
+  false,
 };
 
 Item Ricken = {
@@ -23,7 +23,8 @@ Item Ricken = {
   "Ricken is a seaman if there ever was one. He has wispy silver hair that matches his moustaches. The moustaches, like his eyes and nose, are thin.",
   "Ricken is standing by the fire, drinking.",
   0,
-  false
+  false,
+  false,
 };
 
 Item Rifle = {
@@ -31,7 +32,8 @@ Item Rifle = {
   "A long, wooden rifle. You don't know enough to say more about it.",
   "There is an old rifle here.",
   1,
-  false
+  false,
+  false,
 };
 
 Item Gold = {
@@ -39,7 +41,8 @@ Item Gold = {
   "Solid gold is heavy and this is a lot of it. There is a trident stamped into the side.",
   "There is a gold bar here. A big one.", 
   1, 
-  false
+  false,
+  false,
 };
 
 Item Sand = {
@@ -47,6 +50,7 @@ Item Sand = {
   "Fine, gray sand.",
   "There is sand here.",
   2,
+  false,
   false,
 };
 
@@ -56,6 +60,7 @@ Item Boat = {
   "There is a boat here.",
   0,
   false,
+  false,
 };
 
 Item Oar = {  
@@ -63,6 +68,7 @@ Item Oar = {
   "A wooden oar that has been worn smooth and shiny from use.",
   "There is an oar sitting next to you.",
   1,
+  false,
   false,
 };
 
@@ -72,6 +78,7 @@ Item Paper = {
   "Ther is a rolled up piece of paper here.",
   1,
   false,
+  false,
 };
 
 Item Pencil = {  
@@ -79,6 +86,7 @@ Item Pencil = {
   "A well-used pencil. You will have to be thoughtful and conserve it.",
   "There is a pencil here.",
   1,
+  false,
   false,
 };
 
@@ -88,6 +96,7 @@ Item Coconut = {
   "There is a coconut half buried here.",
   1,
   false,
+  false,
 };
 
 Item Ferns = {  
@@ -95,6 +104,7 @@ Item Ferns = {
   "The ferns are oozing a clear, sticky substance.",
   "There are sticky ferns here.",
   2,
+  false,
   false,
 };
 
@@ -104,6 +114,7 @@ Item Wood = {
   "There is wood here.",
   2,
   false,
+  false,
 };
 
 Item Vines = {  
@@ -111,6 +122,7 @@ Item Vines = {
   "Some long, thin vines that curl around the trees here. They are dark green and shine in the sunlight.",
   "There are some vines here.",
   2,
+  false,
   false,
 };
 
@@ -120,6 +132,7 @@ Item Flint = {
   "There is flint here.",
   2,
   false,
+  false,
 };
 
 Item Water = {  
@@ -128,6 +141,7 @@ Item Water = {
   "The water appears clean and drinkable.",
   2,
   false,
+  false,
 };
 
 Item Berries = {  
@@ -135,7 +149,8 @@ Item Berries = {
   "Small, red berries.",
   "There are some wild berries here.",
   2,
-  true
+  true,
+  false,
 };
 
 Item Cloth = {  
@@ -143,6 +158,7 @@ Item Cloth = {
   "It appears to be a piece of an old ship mast.",
   "There is some tattered cloth here.",
   1,
+  false,
   false,
 };
 

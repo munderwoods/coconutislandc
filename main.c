@@ -39,6 +39,23 @@ int main(int argc, char * argv[]) {
     attroff(A_BOLD | A_REVERSE);
     mvprintw((LINES * .5) + 1, (COLS * .5) + 5, inventoryBuffer);
 
+    attron(A_BOLD | A_REVERSE);
+    mvprintw((LINES * .5) + 3, (COLS * .5) + 5, "  S T A T U S  ");
+    attroff(A_BOLD | A_REVERSE);
+    mvprintw((LINES * .5) + 4, (COLS * .5) + 5, "BLOOD");
+    mvprintw((LINES * .5) + 6, (COLS * .5) + 5, "STAMINA");
+    mvprintw((LINES * .5) + 8, (COLS * .5) + 5, "MOBILITY");
+    mvprintw((LINES * .5) + 10, (COLS * .5) + 5, "TEMPERATURE");
+    //
+    //mvprintw((LINES * .5) + 11, (COLS * .5) + 5, makeBar(temperature));
+    mvhline((LINES * .5) + 11, (COLS * .5) + 5, ACS_CKBOARD, 10);
+    attron(A_BOLD | A_REVERSE);
+    mvprintw((LINES * .5) + 11, (COLS * .5) + 5, makeBar(temperature));
+    attroff(A_BOLD | A_REVERSE);
+
+    mvprintw((LINES * .5) + 12, (COLS * .5) + 5, "THIRST");
+    mvprintw((LINES * .5) + 14, (COLS * .5) + 5, "HUNGER");
+
     mvhline(0, 0, ACS_CKBOARD, COLS);
     mvvline(0, COLS * .5, ACS_CKBOARD, LINES);
     mvhline(LINES - 1, 0, ACS_CKBOARD, COLS);

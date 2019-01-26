@@ -5,6 +5,7 @@ char inventoryBuffer[1000] = "";
 char command[20] = "INITIAL_COMMAND";
 char currentLocationName[20] = "Ricken's Door";
 char inventory[20][25] = {"Gold Bar"};
+int temperature = 5;
 
 int thunder();
 
@@ -32,5 +33,7 @@ void dropItem(char * itemName);
 void deleteInventoryItem(char * itemName); 
 void deleteLocationItem(char * itemName); 
 bool itemInInventory(char * itemName); 
+
+char * makeBar(int stat); 
 
 void action(char * command); 
