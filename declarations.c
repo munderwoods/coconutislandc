@@ -5,12 +5,15 @@ char inventoryBuffer[1000] = "";
 char command[20] = "INITIAL_COMMAND";
 char currentLocationName[20] = "Ricken's Door";
 char inventory[20][25] = {"Gold Bar"};
-int blood = 0;
-int stamina = 2;
+int blood = 10;
+int stamina = 10;
 int temperature = 5;
-int mobility = 8;
-int thirst = 9;
+int mobility = 10;
+int thirst = 10;
 int hunger = 10;
+
+int min = 0;
+int hour = 0;
 
 int thunder();
 
@@ -40,5 +43,7 @@ void deleteLocationItem(char * itemName);
 bool itemInInventory(char * itemName); 
 
 char * makeBar(int stat); 
+void setStats();
+void incrementTime(); 
 
 void action(char * command); 

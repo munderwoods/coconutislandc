@@ -153,6 +153,7 @@ void movec(char * direction) {
   Location *ptr_location;  
   ptr_location = currentLocationPointer();
   ptr_location->visited = true;
+  temperature = currentLocation().temperature;
 }
 
 void obtainItem(char * itemName, int obtainability) {
@@ -266,4 +267,18 @@ char * makeBar(int stat) {
     barTemp[i] = *on;
   }
   return barTemp;
+}
+
+void setStats() {
+}
+
+void incrementTime() {
+  min+=20;
+  if(min == 60) {
+    min = 0;
+    hour += 1;
+    if(hour == 24) {
+      hour = 0;
+    }
+  }
 }

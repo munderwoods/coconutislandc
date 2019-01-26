@@ -74,6 +74,15 @@ int main(int argc, char * argv[]) {
     mvprintw((LINES * .5) + 15, (COLS * .5) + 5, makeBar(hunger));
     attroff(A_BOLD | A_REVERSE);
 
+    attron(A_BOLD | A_REVERSE);
+    mvprintw((LINES * .5) + 17, (COLS * .5) + 5, "  T I M E  ");
+    attroff(A_BOLD | A_REVERSE);
+    if(min !=0) {
+      mvprintw((LINES * .5) + 18, (COLS * .5) + 5, "%ld:%ld", hour, min);
+    } else {
+      mvprintw((LINES * .5) + 18, (COLS * .5) + 5, "%ld:%ld%ld", hour, min, min);
+    }
+
     mvhline(0, 0, ACS_CKBOARD, COLS);
     mvvline(0, COLS * .5, ACS_CKBOARD, LINES);
     mvhline(LINES - 1, 0, ACS_CKBOARD, COLS);
@@ -90,6 +99,7 @@ int main(int argc, char * argv[]) {
 
     strcpy(printBuffer, "");
     action(command);
+    incrementTime();
     refresh();
   }
 
