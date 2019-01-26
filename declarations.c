@@ -5,7 +5,12 @@ char inventoryBuffer[1000] = "";
 char command[20] = "INITIAL_COMMAND";
 char currentLocationName[20] = "Ricken's Door";
 char inventory[20][25] = {"Gold Bar"};
+int blood = 0;
+int stamina = 2;
 int temperature = 5;
+int mobility = 8;
+int thirst = 9;
+int hunger = 10;
 
 int thunder();
 
