@@ -282,8 +282,62 @@ void setStats() {
     blood += 1;
   }
 
+  if(stamina < 10 && hunger > 2 && min == 0) {
+    stamina += 1;
+  }
+
+  if(hunger > 0 && turns % 10 == 0) {
+    hunger -= 1;
+  }
+
+  if(thirst > 0 && turns % 5 == 0) {
+    thirst -= 1;
+  }
+
+  if(temperature < 4) {
+    if(hunger > 0 && turns % 7 == 0) {
+      hunger -= 1;
+    }
+		if(!checkStatus("Cold")) {
+			addStatus("Cold");
+		}
+  }
+
+  if(temperature > 3) {
+		if(checkStatus("Cold")) {
+			removeStatus("Cold");
+		}
+  }
 }
 
+void addStatus(char * statusName) {
+  int a;
+  for(a = 0; a < sizeof(status) / sizeof(status[0]); a++) {
+    if(strMatch(status[a], "")) {
+      strcpy(status[a], statusName);
+			break;
+    }
+  }
+}
+
+void removeStatus(char * statusName) {
+  int a;
+  for(a = 0; a < sizeof(status) / sizeof(status[0]); a++) {
+    if(strMatch(status[a], statusName)) {
+      strcpy(status[a], "");
+			break;
+    }
+  }
+}
+
+bool checkStatus(char * statusName) {
+  int a;
+  for(a = 0; a < sizeof(status) / sizeof(status[0]); a++) {
+		if(strMatch(status[a], statusName)) {
+			return true;
+		}
+  }
+}
 void incrementTime() {
   min+=20;
   if(min == 60) {

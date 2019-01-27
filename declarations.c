@@ -1,12 +1,14 @@
 char printBuffer[1000] = "";
 char locationBuffer[1000] = "";
 char inventoryBuffer[1000] = "";
+char statusBuffer[1000] = "";
 
 char command[20] = "INITIAL_COMMAND";
 char currentLocationName[20] = "Ricken's Door";
 char inventory[20][25] = {"Gold Bar"};
-int blood = 10;
-int stamina = 10;
+char status[20][25] = {};
+int blood = 5;
+int stamina = 5;
 int temperature = 5;
 int mobility = 10;
 int thirst = 10;
@@ -46,6 +48,9 @@ bool itemInInventory(char * itemName);
 
 char * makeBar(int stat); 
 void setStats();
+bool checkStatus(char * statusName);
+void addStatus(char * statusName);
+void removeStatus(char * statusName);
 void incrementTime(); 
 
 void action(char * command); 

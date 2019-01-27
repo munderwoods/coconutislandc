@@ -9,10 +9,10 @@ void render() {
   mvprintw(LINES * .5, 0, printBuffer);
 
   strcpy(inventoryBuffer, "");
-  int i;
-  for(i = 0; i < sizeof(inventory) / sizeof(inventory[0]); i++) {
-    if(!strMatch(inventory[i], "")){
-      strcat(inventoryBuffer, inventory[i]);
+  int a;
+  for(a = 0; a < sizeof(inventory) / sizeof(inventory[0]); a++) {
+    if(!strMatch(inventory[a], "")){
+      strcat(inventoryBuffer, inventory[a]);
       strcat(inventoryBuffer, ", ");
     }
   }
@@ -27,51 +27,62 @@ void render() {
   mvprintw((LINES * .5) + 3, (COLS * .5) + 5, "  S T A T U S  ");
   attroff(A_BOLD | A_REVERSE);
 
-  mvprintw((LINES * .5) + 4, (COLS * .5) + 5, "BLOOD");
-  mvhline((LINES * .5) + 5, (COLS * .5) + 5, ACS_CKBOARD, 10);
+  strcpy(statusBuffer, "");
+  int b;
+  for(b = 0; b < sizeof(status) / sizeof(status[0]); b++) {
+    if(!strMatch(status[b], "")){
+      strcat(statusBuffer, status[b]);
+      strcat(statusBuffer, ", ");
+    }
+  }
+  
+  mvprintw((LINES * .5) + 4, (COLS * .5) + 5, statusBuffer);
+
+  mvprintw((LINES * .5) + 7, (COLS * .5) + 5, "BLOOD");
+  mvhline((LINES * .5) + 8, (COLS * .5) + 5, ACS_CKBOARD, 10);
   attron(A_BOLD | A_REVERSE);
-  mvprintw((LINES * .5) + 5, (COLS * .5) + 5, makeBar(blood));
+  mvprintw((LINES * .5) + 8, (COLS * .5) + 5, makeBar(blood));
   attroff(A_BOLD | A_REVERSE);
-  mvprintw((LINES * .5) + 6, (COLS * .5) + 5, "STAMINA");
-  mvhline((LINES * .5) + 7, (COLS * .5) + 5, ACS_CKBOARD, 10);
+  mvprintw((LINES * .5) + 9, (COLS * .5) + 5, "STAMINA");
+  mvhline((LINES * .5) + 10, (COLS * .5) + 5, ACS_CKBOARD, 10);
   attron(A_BOLD | A_REVERSE);
-  mvprintw((LINES * .5) + 7, (COLS * .5) + 5, makeBar(stamina));
+  mvprintw((LINES * .5) + 10, (COLS * .5) + 5, makeBar(stamina));
   attroff(A_BOLD | A_REVERSE);
-  mvprintw((LINES * .5) + 8, (COLS * .5) + 5, "MOBILITY");
-  mvhline((LINES * .5) + 9, (COLS * .5) + 5, ACS_CKBOARD, 10);
+  mvprintw((LINES * .5) + 11, (COLS * .5) + 5, "MOBILITY");
+  mvhline((LINES * .5) + 12, (COLS * .5) + 5, ACS_CKBOARD, 10);
   attron(A_BOLD | A_REVERSE);
-  mvprintw((LINES * .5) + 9, (COLS * .5) + 5, makeBar(mobility));
+  mvprintw((LINES * .5) + 12, (COLS * .5) + 5, makeBar(mobility));
   attroff(A_BOLD | A_REVERSE);
-  mvprintw((LINES * .5) + 10, (COLS * .5) + 5, "TEMPERATURE");
-  mvhline((LINES * .5) + 11, (COLS * .5) + 5, ACS_CKBOARD, 10);
+  mvprintw((LINES * .5) + 13, (COLS * .5) + 5, "TEMPERATURE");
+  mvhline((LINES * .5) + 14, (COLS * .5) + 5, ACS_CKBOARD, 10);
   attron(A_BOLD | A_REVERSE);
-  mvprintw((LINES * .5) + 11, (COLS * .5) + 5, makeBar(temperature));
+  mvprintw((LINES * .5) + 14, (COLS * .5) + 5, makeBar(temperature));
   attroff(A_BOLD | A_REVERSE);
-  mvprintw((LINES * .5) + 12, (COLS * .5) + 5, "THIRST");
-  mvhline((LINES * .5) + 13, (COLS * .5) + 5, ACS_CKBOARD, 10);
+  mvprintw((LINES * .5) + 15, (COLS * .5) + 5, "THIRST");
+  mvhline((LINES * .5) + 16, (COLS * .5) + 5, ACS_CKBOARD, 10);
   attron(A_BOLD | A_REVERSE);
-  mvprintw((LINES * .5) + 13, (COLS * .5) + 5, makeBar(thirst));
+  mvprintw((LINES * .5) + 16, (COLS * .5) + 5, makeBar(thirst));
   attroff(A_BOLD | A_REVERSE);
-  mvprintw((LINES * .5) + 14, (COLS * .5) + 5, "HUNGER");
-  mvhline((LINES * .5) + 15, (COLS * .5) + 5, ACS_CKBOARD, 10);
+  mvprintw((LINES * .5) + 17, (COLS * .5) + 5, "HUNGER");
+  mvhline((LINES * .5) + 18, (COLS * .5) + 5, ACS_CKBOARD, 10);
   attron(A_BOLD | A_REVERSE);
-  mvprintw((LINES * .5) + 15, (COLS * .5) + 5, makeBar(hunger));
+  mvprintw((LINES * .5) + 18, (COLS * .5) + 5, makeBar(hunger));
   attroff(A_BOLD | A_REVERSE);
 
   attron(A_BOLD | A_REVERSE);
-  mvprintw((LINES * .5) + 17, (COLS * .5) + 5, "  T I M E  ");
+  mvprintw(LINES - 4, (COLS * .5) + 5, "  T I M E  ");
   attroff(A_BOLD | A_REVERSE);
   if(min !=0) {
-    mvprintw((LINES * .5) + 19, (COLS * .5) + 5, "%ld:%ld", hour, min);
+    mvprintw(LINES - 3, (COLS * .5) + 5, "%ld:%ld", hour, min);
   } else {
-    mvprintw((LINES * .5) + 19, (COLS * .5) + 5, "%ld:%ld%ld", hour, min, min);
+    mvprintw(LINES - 3, (COLS * .5) + 5, "%ld:%ld%ld", hour, min, min);
   }
   if(day) {
     attron(A_BOLD | A_REVERSE);
-    mvprintw((LINES * .5) + 18, (COLS * .5) + 5, "It is Day");
+    mvprintw(LINES - 2, (COLS * .5) + 5, "It is Day");
     attroff(A_BOLD | A_REVERSE);
   } else {
-    mvprintw((LINES * .5) + 18, (COLS * .5) + 5, "It is Night");
+    mvprintw(LINES - 2, (COLS * .5) + 5, "It is Night");
   }
 
   mvhline(0, 0, ACS_CKBOARD, COLS);
