@@ -391,6 +391,49 @@ void setStats() {
 		}
 	}
 
+	if(checkStatus("Broken Bone")) {
+		if(mobility>3) {
+			mobility -= 7;
+		}
+	}
+
+	if(blood<0) {
+			blood=0;
+  }
+	if(blood ==0) {
+			dead();
+  }
+	if(blood>10) {
+			blood=10;
+  }
+	if(stamina<0) {
+			stamina=0;
+  }
+	if(stamina>10) {
+			stamina=10;
+  }
+	if(mobility<0) {
+			mobility=0;
+  }
+	if(temperature<0) {
+			temperature=0;
+  }
+	if(temperature>10) {
+			temperature=10;
+  }
+	if(thirst<0) {
+			thirst=0;
+  }
+	if(thirst>10) {
+			thirst=10;
+  }
+	if(hunger<0) {
+			hunger=0;
+  }
+	if(hunger>10) {
+			hunger=10;
+  }
+
 }
 
 void addStatus(char * statusName) {
@@ -421,6 +464,10 @@ bool checkStatus(char * statusName) {
 		}
   }
 }
+
+void dead() {
+}
+
 void incrementTime() {
   min+=20;
   if(min == 60) {

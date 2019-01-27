@@ -51,6 +51,7 @@ void setStats();
 bool checkStatus(char * statusName);
 void addStatus(char * statusName);
 void removeStatus(char * statusName);
+void dead();
 void incrementTime(); 
 
 void action(char * command); 
