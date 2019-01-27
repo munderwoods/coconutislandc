@@ -294,6 +294,18 @@ void setStats() {
     thirst -= 1;
   }
 
+	if(thirst<1) {
+		blood-=2;
+	}
+
+	if(hunger<1) {
+		blood-=1;
+	}
+
+	if(stamina<5) {
+		mobility -=4;
+	}
+
   if(temperature < 4) {
     if(hunger > 0 && turns % 7 == 0) {
       hunger -= 1;
@@ -314,7 +326,7 @@ void setStats() {
 		if(!checkStatus("Freezing")) {
 			addStatus("Freezing");
 		}
-		if (checkStatus("Cold")) {
+		if(checkStatus("Cold")) {
 			removeStatus("Cold");
 		}
 	}
@@ -345,7 +357,7 @@ void setStats() {
 			addStatus("Burning");
 		}
 		if(checkStatus("Hot")) {
-				removeStatus("Hot");
+			removeStatus("Hot");
 		}
 	}
             
@@ -355,20 +367,20 @@ void setStats() {
 		}
 	}
             
-	if(thirst<3) {
+	if(thirst < 3) {
 		stamina -= 1;
 		if(!checkStatus("Thirsty")) {
 			addStatus("Thirsty");
 		}
 	}
             
-	if(thirst>=3) {
+	if(thirst >= 3) {
 		if(checkStatus("Thirsty")) {
 			removeStatus("Thirsty");
 		}
 	}
             
-	if(hunger<3) {
+	if(hunger < 3) {
 		stamina -= 1;
 		if(!checkStatus("Hungry")) {
 			addStatus("Hungry");
@@ -381,18 +393,17 @@ void setStats() {
 		}
 	}
             
-
 	if(checkStatus("Laceration")) {
-		if(blood>5) {
+		if(blood > 5) {
 			blood = 5;
 		}
-		if(mobility>5) {
+		if(mobility > 5) {
 			mobility = 5;
 		}
 	}
 
 	if(checkStatus("Broken Bone")) {
-		if(mobility>3) {
+		if(mobility > 3) {
 			mobility -= 7;
 		}
 	}
@@ -412,8 +423,8 @@ void setStats() {
 	if(stamina>10) {
 			stamina=10;
   }
-	if(mobility<0) {
-			mobility=0;
+	if(mobility < 0) {
+			mobility = 0;
   }
 	if(temperature<0) {
 			temperature=0;
@@ -461,6 +472,8 @@ bool checkStatus(char * statusName) {
   for(a = 0; a < sizeof(status) / sizeof(status[0]); a++) {
 		if(strMatch(status[a], statusName)) {
 			return true;
+		} else if(strMatch(status[a], "")) {
+			return false;
 		}
   }
 }
