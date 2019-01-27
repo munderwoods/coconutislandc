@@ -11,3 +11,4 @@
 #include "functions.c"
 #include "actions.c"
 #include "render.c"
+#include "stats.c"

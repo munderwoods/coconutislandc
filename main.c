@@ -19,7 +19,7 @@ int main(int argc, char * argv[]) {
 
     action(command);
     incrementTime();
-    setStats();
+    stats();
     refresh();
   }
 

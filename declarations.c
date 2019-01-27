@@ -47,7 +47,6 @@ void deleteLocationItem(char * itemName);
 bool itemInInventory(char * itemName); 
 
 char * makeBar(int stat); 
-void setStats();
 bool checkStatus(char * statusName);
 void addStatus(char * statusName);
 void removeStatus(char * statusName);
@@ -55,4 +54,5 @@ void dead();
 void incrementTime(); 
 
 void action(char * command); 
+void stats();
 void render();
