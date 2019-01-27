@@ -8,6 +8,17 @@ void render() {
   mvprintw(2, 0, locationBuffer);
   mvprintw(LINES * .5, 0, printBuffer);
 
+  attron(A_BOLD | A_REVERSE);
+  mvprintw(2, (COLS * .5) + 5, "  M A P  ");
+  attroff(A_BOLD | A_REVERSE);
+  int x;
+  int y;
+  for(x = 0; x < sizeof(map) / sizeof(map[0]); x++) {
+    for(y = 0; y < sizeof(map[0]) / sizeof(map[0][0]); y++) {
+      mvprintw(3 + y, (COLS * .5) + 5 + (x*2), map[x][y]);
+    }
+  }
+
   strcpy(inventoryBuffer, "");
   int a;
   for(a = 0; a < sizeof(inventory) / sizeof(inventory[0]); a++) {
