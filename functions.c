@@ -308,6 +308,89 @@ void setStats() {
 			removeStatus("Cold");
 		}
   }
+
+	if(temperature <= 1) {
+		blood -= 1;
+		if(!checkStatus("Freezing")) {
+			addStatus("Freezing");
+		}
+		if (checkStatus("Cold")) {
+			removeStatus("Cold");
+		}
+	}
+        
+	if(temperature > 1) {
+		if(checkStatus("Freezeing")) {
+			removeStatus("Freezing");
+		}
+	}
+          
+	if(temperature > 7) {
+		thirst -= 1;
+		if(!checkStatus("Hot")) {
+			addStatus("Hot");
+		}
+	}
+
+	if(temperature <= 7) {
+		if(checkStatus("Hot")) {
+			removeStatus("Hot");
+		}
+	}
+          
+          
+	if(temperature >= 10) {
+		blood-=2;
+		if(!checkStatus("Burning")) {
+			addStatus("Burning");
+		}
+		if(checkStatus("Hot")) {
+				removeStatus("Hot");
+		}
+	}
+            
+	if(temperature < 10) {
+		if(checkStatus("Burning")) {
+			removeStatus("Burning");
+		}
+	}
+            
+	if(thirst<3) {
+		stamina -= 1;
+		if(!checkStatus("Thirsty")) {
+			addStatus("Thirsty");
+		}
+	}
+            
+	if(thirst>=3) {
+		if(checkStatus("Thirsty")) {
+			removeStatus("Thirsty");
+		}
+	}
+            
+	if(hunger<3) {
+		stamina -= 1;
+		if(!checkStatus("Hungry")) {
+			addStatus("Hungry");
+		}
+	}
+            
+	if(hunger >= 3) {
+		if(checkStatus("Hungry")) {
+			removeStatus("Hungry");
+		}
+	}
+            
+
+	if(checkStatus("Laceration")) {
+		if(blood>5) {
+			blood = 5;
+		}
+		if(mobility>5) {
+			mobility = 5;
+		}
+	}
+
 }
 
 void addStatus(char * statusName) {
