@@ -12,8 +12,10 @@ int mobility = 10;
 int thirst = 10;
 int hunger = 10;
 
-int min = 0;
-int hour = 0;
+int turns = 0;
+int min = 40;
+int hour = 22;
+bool day = false;
 
 int thunder();
 
@@ -47,3 +49,4 @@ void setStats();
 void incrementTime(); 
 
 void action(char * command); 
+void render();

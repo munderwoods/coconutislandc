@@ -153,7 +153,6 @@ void movec(char * direction) {
   Location *ptr_location;  
   ptr_location = currentLocationPointer();
   ptr_location->visited = true;
-  temperature = currentLocation().temperature;
 }
 
 void obtainItem(char * itemName, int obtainability) {
@@ -270,6 +269,19 @@ char * makeBar(int stat) {
 }
 
 void setStats() {
+  mobility = 10;
+
+  temperature = currentLocation().temperature;
+  if(day) {
+    temperature += 2;
+  } else {
+    temperature -= 2;
+  }
+
+  if(blood < 10 && hunger > 2 && min == 0) {
+    blood += 1;
+  }
+
 }
 
 void incrementTime() {
@@ -281,4 +293,11 @@ void incrementTime() {
       hour = 0;
     }
   }
+  if(hour < 6 || hour > 20) {
+    day = false;
+  } else {
+    day = true;
+  }
+
+  turns += 1;
 }

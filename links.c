@@ -10,3 +10,4 @@
 #include "declarations.c"
 #include "functions.c"
 #include "actions.c"
+#include "render.c"
