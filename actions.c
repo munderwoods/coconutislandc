@@ -123,6 +123,7 @@ void action(char * command) {
       ){
     strcpy(currentLocationName, "Shore");
     addToPrintBuffer("You wake up on a gray beach, half submerged and vomit into the ocean. Your leg hurts bad. It's been wrapped in cloth, but it's still bleeding. It needs some sort of ointment to stop it. You are alone.");
+
   } else {
     addToPrintBuffer("You Cannot.");
   }

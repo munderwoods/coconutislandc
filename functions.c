@@ -299,7 +299,8 @@ bool checkStatus(char * statusName) {
   }
 }
 
-void dead() {
+void die() {
+  strcpy(currentLocationName, "Dead");
 }
 
 void incrementTime() {

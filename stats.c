@@ -142,7 +142,7 @@ void stats() {
 			blood=0;
   }
 	if(blood ==0) {
-			dead();
+			die();
   }
 	if(blood>10) {
 			blood=10;

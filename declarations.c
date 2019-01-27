@@ -50,7 +50,7 @@ char * makeBar(int stat);
 bool checkStatus(char * statusName);
 void addStatus(char * statusName);
 void removeStatus(char * statusName);
-void dead();
+void die();
 void incrementTime(); 
 
 void action(char * command); 

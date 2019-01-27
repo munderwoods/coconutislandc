@@ -16,7 +16,7 @@ typedef struct {
   char items[5][25];
 } Location;
 
-Location locations[10];
+Location locations[50];
 
 Location rickensDoor = {
   "Ricken's Door",
@@ -217,6 +217,25 @@ Location waterfall = {
   {"Water"},
 };
 
+Location dead = {
+  "Dead",  
+  "None",
+  "None",
+  "None",
+  "None",
+  "None",
+  "None",
+  "None",
+  "None",
+  "You have died. Please type Quit and try again.",
+  "",
+  "_",
+  false,
+  5,
+  {},
+};
+
+
 void buildLocations() {
   locations[0] = rickensDoor;
   locations[1] = rickensHovel;
@@ -229,6 +248,7 @@ void buildLocations() {
   locations[8] = chamber;
   locations[9] = delta;
   locations[10] = waterfall;
+  locations[11] = dead;
 }
 
 
