@@ -10,7 +10,7 @@ typedef struct {
   char westAccess[50];
   char description[500];
   char firstVisitText[500];
-  char icon[1];
+  char *icon;
   bool visited;
   int temperature;
   char items[5][25];
@@ -30,7 +30,7 @@ Location rickensDoor = {
   "None",
   "You stand in front of Ricken's door. It's east of you. His home is a dilapidated shack in a row of dilapidated shacks that line the waterfront. North of you is the docks. The crowd at the boats is impassable. The cobblestone is slippery under your boots.",
   "",
-  "_",
+  "D",
   true,
   5,
   {"Door"}
@@ -48,7 +48,7 @@ Location rickensHovel = {
   "Open",
   "A small room lit by a mostly open fire with a cast iron pot hung over it. There are rum bottles scattered across the floor. The door to the west leads outside.",
   "",
-  "_",
+  "H",
   false,
   6,
   {"Ricken"}

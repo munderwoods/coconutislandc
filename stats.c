@@ -174,4 +174,5 @@ void stats() {
 	if(hunger>10) {
 			hunger=10;
   }
+
 }

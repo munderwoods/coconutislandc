@@ -45,8 +45,7 @@ bool strContain(char * str, char * key);
 
 void toLower(char * str);
 int wordlen(const char * str); 
-void wrap(char * s, const int wrapline); 
-int formatText(char * text, int maxX);
+void wrap(char * s, int wrapline); 
 void addToPrintBuffer(char * text); 
 Location currentLocation();
 Location *currentLocationPointer();

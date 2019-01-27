@@ -29,32 +29,28 @@ void toLower(char * str) {
 }
 
 int wordlen(const char * str) {
-  int tempindex = 0;
-  while (str[tempindex] != ' ' && str[tempindex] != 0 && str[tempindex] != '\n') {
-    ++tempindex;
+  int i = 0;
+  while (str[i] != ' ' && str[i] != 0 && str[i] != '\n') {
+    ++i;
   }
-  return (tempindex);
+  return i;
 }
 
-void wrap(char * s, const int wrapline) {
-  int index = 0;
-  int curlinelen = 0;
-  while (s[index] != '\0') {
-    if (s[index] == '\n') {
-      curlinelen = 0;
-    } else if (s[index] == ' ') {
-      if (curlinelen + wordlen( & s[index + 1]) >= wrapline) {
-        s[index] = '\n';
-        curlinelen = 0;
+void formatText(char * s, int maxX) {
+  int i = 0;
+  int currentLineLength = 0;
+  while (s[i] != '\0') {
+    if (s[i] == '\n') {
+      currentLineLength = 0;
+    } else if (s[i] == ' ') {
+      if (currentLineLength + wordlen( & s[i + 1]) >= maxX) {
+        s[i] = '\n';
+        currentLineLength = 0;
       }
     }
-    curlinelen++;
-    index++;
+    currentLineLength++;
+    i++;
   }
-}
-
-int formatText(char * text, int maxX) {
-  wrap(text, maxX);
 }
 
 void addToPrintBuffer(char * text) {
@@ -117,11 +113,14 @@ Item *getItemPointer(char * itemName) {
 } 
 
 void movec(char * direction) {
+	map[mapX][mapY] = currentLocation().icon;
+
   if(strMatch(direction, "north")) {
     if(strMatch(currentLocation().northDestination, "None")) {
       addToPrintBuffer("You cannot.");
     } else {
       strcpy(currentLocationName, currentLocation().northDestination);
+			mapY -= 1;
     }
   }
   if(strMatch(direction, "east")) {
@@ -129,6 +128,7 @@ void movec(char * direction) {
       addToPrintBuffer("You cannot.");
     } else {
       strcpy(currentLocationName, currentLocation().eastDestination);
+			mapX += 1;
     }
   }
   if(strMatch(direction, "south")) {
@@ -136,6 +136,7 @@ void movec(char * direction) {
       addToPrintBuffer("You cannot.");
     } else {
       strcpy(currentLocationName, currentLocation().southDestination);
+			mapY -= 1;
     }
   }
   if(strMatch(direction, "west")) {
@@ -143,6 +144,7 @@ void movec(char * direction) {
       addToPrintBuffer("You cannot.");
     } else {
       strcpy(currentLocationName, currentLocation().westDestination);
+			mapX -= 1;
     }
   }
 
@@ -153,6 +155,8 @@ void movec(char * direction) {
   Location *ptr_location;  
   ptr_location = currentLocationPointer();
   ptr_location->visited = true;
+
+	map[mapX][mapY] = selfIcon;
 }
 
 void obtainItem(char * itemName, int obtainability) {
