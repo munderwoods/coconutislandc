@@ -8,22 +8,24 @@ void render() {
   mvprintw(2, 0, locationBuffer);
   mvprintw(LINES * .5, 0, printBuffer);
 
-  attron(A_BOLD | A_REVERSE);
-  mvprintw(2, (COLS * .5) + 5, "            M A P            ");
-  attroff(A_BOLD | A_REVERSE);
-  int x;
-  int y;
-  for(x = 0; x < sizeof(map) / sizeof(map[0]); x++) {
-    for(y = 0; y < sizeof(map[0]) / sizeof(map[0][0]); y++) {
-      mvprintw(3 + y, (COLS * .5) + 6 + (x*2), map[x][y]);
+  if(itemInInventory("Map")) {
+    attron(A_BOLD | A_REVERSE);
+    mvprintw(2, (COLS * .5) + 5, "            M A P            ");
+    attroff(A_BOLD | A_REVERSE);
+    int x;
+    int y;
+    for(x = 0; x < sizeof(map) / sizeof(map[0]); x++) {
+      for(y = 0; y < sizeof(map[0]) / sizeof(map[0][0]); y++) {
+        mvprintw(3 + y, (COLS * .5) + 6 + (x*2), map[x][y]);
+      }
     }
-  }
 
-  mvvline(3, (COLS * .5) + 5, ACS_VLINE, 15);
-  mvvline(3, (COLS * .5) + 33, ACS_VLINE, 15);
-  mvhline(18, (COLS * .5) + 6, ACS_HLINE, 27);
-  mvhline(18, (COLS * .5) + 5, ACS_LLCORNER, 1);
-  mvhline(18, (COLS * .5) + 33, ACS_LRCORNER, 1);
+    mvvline(3, (COLS * .5) + 5, ACS_VLINE, 15);
+    mvvline(3, (COLS * .5) + 33, ACS_VLINE, 15);
+    mvhline(18, (COLS * .5) + 6, ACS_HLINE, 27);
+    mvhline(18, (COLS * .5) + 5, ACS_LLCORNER, 1);
+    mvhline(18, (COLS * .5) + 33, ACS_LRCORNER, 1);
+  }
 
   strcpy(inventoryBuffer, "");
   int a;

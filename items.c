@@ -7,7 +7,7 @@ typedef struct {
   bool edible;
 } Item;
 
-Item items[50];
+Item items[100];
 
 Item Door = {
   "Door",
@@ -162,6 +162,53 @@ Item Cloth = {
   false,
 };
 
+Item Fire = {
+  "Fire",
+  "A small fire. It offers meager warmth.",
+  "There is a fire here.",
+  0,
+  false,
+  false,
+};
+
+Item Sundial = {
+  "Sundial",
+  "A stick protruding from the sand. The shadow coming off of the stick indicates the time of day. Only works where sunlight is present.",
+  "There is a sundial here.",
+  0,
+  false,
+  false,
+};
+
+Item Pack= {
+  "Pack", 
+  "A crude backpack you crafted out of an old shipmast and some vines. It carries little and looks like it might fall apart from a slight jossling.",
+  "There is a pack here.",
+  1,    
+	false,
+  false,
+};
+
+Item Map = {
+  "Map", 
+  "A map of the indian ocean. From what you can tell, your current location is unmarked. You will have to update the map as you go.",
+	"There is what appears to be a rolled up map here.",
+  1,
+  false,
+  false,
+};
+
+/*
+Item Splint = {
+  "Splint",
+  "A crude medical device that can be used to mend a broken bone.",
+  "There is a splint here.",
+  1,
+  false,
+  false,
+};
+*/
+
 void buildItems() {
   items[0] = Door;
   items[1] = Ricken;
@@ -179,5 +226,10 @@ void buildItems() {
   items[14] = Water;
   items[15] = Berries;
   items[16] = Cloth;
+  items[17] = Fire;
+  items[18] = Sundial;
+  items[19] = Pack;
+  items[20] = Map;
+  //items[21] = Splint;
 }
 

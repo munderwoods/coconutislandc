@@ -116,13 +116,18 @@ void action(char * command) {
     addToPrintBuffer("You kill one of the men. Ricken gets two more. The lightning starts again and you can see the worst of it now in strobes: billowing dark clouds the size of mountains, paradise coming down around you. A knife goes into your thigh and you slip in the blood. Your boat pushes off and away. You can see the mother treading water. You see a figure through your fogged glasses. It outlines a beast with tendrils thirty stories high, but then it's a wave coming over the top of Ingrete. You are the only one looking back when Siere Marta is washed away by the sea. The wave breaks in front of you and your boat rides the swell high into the air. You lose consciousness.");
     deleteInventoryItem("Gold Bar");
     deleteInventoryItem("Rifle");
+    addStatus("Unconscious");
 
   } else if (
       strMatch(currentLocation().name, "Unconscious") &&
       strContain(command, "wake")
       ){
     strcpy(currentLocationName, "Shore");
+    addStatus("Laceration");
+    removeStatus("Unconscious");
     addToPrintBuffer("You wake up on a gray beach, half submerged and vomit into the ocean. Your leg hurts bad. It's been wrapped in cloth, but it's still bleeding. It needs some sort of ointment to stop it. You are alone.");
+    mapX = 8;
+    mapY = 1;
 
   } else {
     addToPrintBuffer("You Cannot.");

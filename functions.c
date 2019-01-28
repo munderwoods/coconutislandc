@@ -113,7 +113,9 @@ Item *getItemPointer(char * itemName) {
 } 
 
 void movec(char * direction) {
-	map[mapX][mapY] = currentLocation().icon;
+  if(itemInInventory("Map")) {
+    map[mapX][mapY] = currentLocation().icon;
+  }
 
   if(strMatch(direction, "north")) {
     if(strMatch(currentLocation().northDestination, "None")) {
@@ -136,7 +138,7 @@ void movec(char * direction) {
       addToPrintBuffer("You cannot.");
     } else {
       strcpy(currentLocationName, currentLocation().southDestination);
-			mapY -= 1;
+			mapY += 1;
     }
   }
   if(strMatch(direction, "west")) {
@@ -156,7 +158,9 @@ void movec(char * direction) {
   ptr_location = currentLocationPointer();
   ptr_location->visited = true;
 
-	map[mapX][mapY] = selfIcon;
+  if(itemInInventory("Map")) {
+    map[mapX][mapY] = selfIcon;
+  }
 }
 
 void obtainItem(char * itemName, int obtainability) {
@@ -170,6 +174,9 @@ void obtainItem(char * itemName, int obtainability) {
   if(obtainability != 2) {
     deleteLocationItem(itemName);
   }
+	if(strMatch(itemName, "Map")) {
+    map[mapX][mapY] = "@";
+	}
 }
 
 void dropItem(char * itemName) {
@@ -297,10 +304,9 @@ bool checkStatus(char * statusName) {
   for(a = 0; a < sizeof(status) / sizeof(status[0]); a++) {
 		if(strMatch(status[a], statusName)) {
 			return true;
-		} else if(strMatch(status[a], "")) {
-			return false;
-		}
+		} 
   }
+  return false;
 }
 
 void die() {

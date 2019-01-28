@@ -13,7 +13,7 @@ typedef struct {
   char *icon;
   bool visited;
   int temperature;
-  char items[5][25];
+  char items[10][25];
 } Location;
 
 Location locations[50];
@@ -105,7 +105,7 @@ Location shore = {
   ".",
   true,
   5,
-  {"Sand", "Boat"},
+  {"Sand", "Boat", "Sundial"},
 };
 
 Location ocean = {
@@ -160,7 +160,7 @@ Location cave = {
   "C",
   false,
   4,
-  {},
+  {"Fire"},
 };
 
 Location chamber = {
@@ -178,7 +178,7 @@ Location chamber = {
   "F",
   false,
   4,
-  {"Flint"},
+  {"Flint", "Map"},
 };
 
 Location delta = {
