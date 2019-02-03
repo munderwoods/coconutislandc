@@ -60,6 +60,8 @@ void setItemProperty(char * itemName, char * property, char * newValue);
 void movec(char * direction); 
 void obtainItem(char * itemName, int obtainability); 
 void dropItem(char * itemName); 
+void eatItem(char * itemName); 
+void drink(); 
 void deleteInventoryItem(char * itemName); 
 void deleteLocationItem(char * itemName); 
 bool itemInInventory(char * itemName); 

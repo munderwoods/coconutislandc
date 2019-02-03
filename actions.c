@@ -82,6 +82,32 @@ void action(char * command) {
       }
     }
 
+  } else if (strContain(command, "eat")) {
+    int a;
+    int b;
+    for (a = 0; a < sizeof(inventory) / sizeof(inventory[0]); a++) {
+      char currentItem[200]; 
+      strcpy(currentItem, inventory[a]);
+      toLower(currentItem);
+      if(strContain(command, currentItem)) {
+        for (b = 0; b < sizeof(items) / sizeof(items[0]); b++) {
+          if(strMatch(inventory[a], items[b].name) && !strMatch(inventory[a], "") && getItem(inventory[a]).edible) {
+            eatItem(items[b].name);
+            char str[1000]; 
+            strcpy(str, "You ate the "); 
+            strcat(str, items[b].name); 
+            addToPrintBuffer(str);
+          } 
+        }
+      }
+    }
+
+  } else if (strContain(command, "drink")) {
+    if(itemInInventory("Water")) {
+      drink();
+      addToPrintBuffer("You drank the water.");
+    }
+
   } else if (
       strMatch(currentLocation().name, "Ricken's Door") && 
       !getItem("Door").open && 

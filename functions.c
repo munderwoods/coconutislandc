@@ -197,6 +197,26 @@ void dropItem(char * itemName) {
   }
 }
 
+void eatItem(char * itemname) {
+  hunger = 10;
+  int b;
+  for(b = 0; b < sizeof(inventory) / sizeof(inventory[0]); b++) {
+    if(strMatch(inventory[b], itemname)) {
+      strcpy(inventory[b], "");
+    }
+  }
+}
+
+void drink() {
+  thirst = 10;
+  int b;
+  for(b = 0; b < sizeof(inventory) / sizeof(inventory[0]); b++) {
+    if(strMatch(inventory[b], "Water")) {
+      strcpy(inventory[b], "");
+    }
+  }
+}
+
 void deleteLocationItem(char * itemName) {
   Location *ptr_location;  
   ptr_location = currentLocationPointer();

@@ -150,7 +150,7 @@ Item Berries = {
   "There are some wild berries here.",
   2,
   true,
-  false,
+  true,
 };
 
 Item Cloth = {  
