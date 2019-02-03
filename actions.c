@@ -103,6 +103,19 @@ void action(char * command) {
       }
     }
 
+  } else if (
+      strContain(command, "ferns") && 
+      checkStatus("Laceration") && 
+      (strContain(command, "laceration") || strContain(command, "cut") || strContain(command, "wound") || strContain(command, "leg"))
+  ) {
+
+      addToPrintBuffer("You rub the oozing fern on the wound in your leg and it causes a cool, numbing sensation. The bleeding has stopped.");
+      deleteInventoryItem("Ferns");
+      removeStatus("Laceration");
+    if(itemInInventory("Ferns")) {
+      addToPrintBuffer("You drank the water.");
+    }
+
   } else if (strContain(command, "drink")) {
     if(itemInInventory("Water")) {
       drink();
