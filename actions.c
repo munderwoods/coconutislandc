@@ -96,6 +96,7 @@ void action(char * command) {
             char str[1000]; 
             strcpy(str, "You ate the "); 
             strcat(str, items[b].name); 
+            strcat(str, "."); 
             addToPrintBuffer(str);
           } 
         }
